@@ -18,7 +18,7 @@ if(isset($_SESSION['uname']) )
    <nav class="navbar navbar-inverse">
     <div class="container-fluid">
      <div class="navbar-header">
-      <a class="navbar-brand" href="#">Leave Application::<?php echo($_SESSION['uname']); ?></a>
+      <a class="navbar-brand" href="#">Leave Application:<?php echo($_SESSION['uname']); ?></a>
      </div>
      <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
