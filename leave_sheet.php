@@ -70,7 +70,7 @@ if(isset($_SESSION['uname']) )
 }
 else
 {
-    echo '<script>window.location.href = "http://localhost/ash/login.php";</script>';
+    echo '<script>window.location.href = "./login.php";</script>';
 }
 
 ?>

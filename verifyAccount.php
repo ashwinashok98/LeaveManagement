@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) > 0)
     $_SESSION['uname'] =$urow['name'];
     $_SESSION['uid']=$urow['user_id'];
     
-    echo '<script>window.location.href = "http://localhost/ash/index.php";</script>';
+    echo '<script>window.location.href = "./index.php";</script>';
 
     }
 
@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) > 0)
     echo '<script language="javascript">';
   echo 'alert("Wrong Password")';
   echo '</script>';
-      echo '<script>window.location.href = "http://localhost/ash/login.php";</script>';
+      echo '<script>window.location.href = "./login.php";</script>';
 
   }
 }
@@ -46,5 +46,5 @@ else
   echo '<script language="javascript">';
   echo 'alert("User Not Found")';
   echo '</script>';
-  echo '<script>window.location.href = "http://localhost/ash/login.php";</script>';
+  echo '<script>window.location.href = "./login.php";</script>';
 }

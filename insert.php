@@ -16,7 +16,7 @@ if(isset($_SESSION['uname']))
         INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,FacultyApproval)
         VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type',' $incharge',' $name')";
         mysqli_query($connect, $query);
-        echo '<script>window.location.href = "http://localhost/ash/index.php";</script>';
+        echo '<script>window.location.href = "./index.php";</script>';
     
 }
 ?>
