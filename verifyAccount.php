@@ -17,7 +17,7 @@ $data = array();
 if(mysqli_num_rows($result) > 0)
 {
   $row = mysqli_fetch_assoc($result);
- 
+
   if ($password==$row['password']) {
 
     //password valid
@@ -27,24 +27,24 @@ if(mysqli_num_rows($result) > 0)
 
     $_SESSION['uname'] =$urow['name'];
     $_SESSION['uid']=$urow['user_id'];
-    
+
     echo '<script>window.location.href = "./index.php";</script>';
 
     }
 
-  else 
+  else
   {
     echo '<script language="javascript">';
   echo 'alert("Wrong Password")';
   echo '</script>';
-      echo '<script>window.location.href = "./login.php";</script>';
+      echo '<script>window.location.href = "./index.html";</script>';
 
   }
 }
-else 
+else
 {
   echo '<script language="javascript">';
   echo 'alert("User Not Found")';
   echo '</script>';
-  echo '<script>window.location.href = "./login.php";</script>';
+  echo '<script>window.location.href = "./index.html";</script>';
 }
