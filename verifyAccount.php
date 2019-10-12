@@ -27,6 +27,7 @@ if(mysqli_num_rows($result) > 0)
 
     $_SESSION['uname'] =$urow['name'];
     $_SESSION['uid']=$urow['user_id'];
+    $_SESSION['udesignation']=$urow['designation'];
 
     echo '<script>window.location.href = "./index.php";</script>';
 
