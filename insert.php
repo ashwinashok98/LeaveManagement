@@ -14,7 +14,7 @@ if(isset($_SESSION['uname']))
 
         $query = "
         INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,FacultyApproval)
-        VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type',' $incharge',' $name')";
+        VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type',' $incharge','$name')";
         mysqli_query($connect, $query);
         echo '<script>window.location.href = "./index.php";</script>';
     

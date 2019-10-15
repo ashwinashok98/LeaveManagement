@@ -33,7 +33,7 @@ if(isset($_SESSION['uname']) )
    <br />
    <?php
 
-        $query = "SELECT * FROM leaveapplication where facultyApproval = '".$_SESSION['uname']."' ORDER BY application_id DESC";
+        $query = "SELECT * FROM leaveapplication where user_id = '".$_SESSION['uid']."' ORDER BY application_id DESC";
         $result = mysqli_query($connect, $query);
         $output = '';
         if(mysqli_num_rows($result) > 0)
@@ -41,8 +41,7 @@ if(isset($_SESSION['uname']) )
         while($row = mysqli_fetch_array($result))
         {
            
-            $rejid='rej'.$row["application_id"];
-            $acpid="acp".$row["application_id"];
+            
             $output .= '
             <li>
             <a href="#">
@@ -51,18 +50,18 @@ if(isset($_SESSION['uname']) )
             <form id='.$row["application_id"].'>';
             if($row['leaveStatus']==1)
             {
-                $output.='<button id='.$acpid.' value='.$acpid.' name="accpt" disabled >Accepted</button></a>
+                $output.='<button disabled >Accepted</button></a>
                 </li></form>';
             }
             if($row['leaveStatus']==-1)
             {
-                $output.='<button id='.$rejid.' value='.$rejid.' name="reject" disabled >Rejected</button></a>
+                $output.='<button disabled >Rejected</button></a>
                 </li></form>';
             }
             if($row['leaveStatus']==0)
             {
-                $output.='<button id='.$acpid.' value='.$acpid.' name="accpt">Accept</button>
-                <button id='.$rejid.' value='.$rejid.' name="reject">Reject</button>
+                $output.='<button disabled >Pending</button>
+                
                 </form><br></a>
                 </li>';
             }
@@ -96,62 +95,12 @@ else
 
 ?>
 <script>
-$(document).ready(function() {
-        $(":button").click(function(e) {
-        e.preventDefault();
-        var t = $(this).attr('id');
-        var user_id = $(this).closest("form").attr('id');
-        var rej="rej"+user_id;
-        var acp="acp"+user_id;
-        
-        if ( t == acp){
-            $(this).attr("disabled", true);
-            $(this).text("Accepted");
-            $("#"+rej).hide();
-            var app_id=acp;
-            
-        }
-        if ( t == rej){
-            $(this).attr("disabled", true);
-            $(this).text("Rejected");
-            $("#"+acp).hide();
-            var app_id=rej;
-            
-        }    
-        
-        $.ajax({
-            type: 'POST',
-            url: 'approve.php',
-            data:{ id: app_id} // getting filed value in serialize form
-        })
-        .done(function(data){ // if getting done then call.
-
-            // show the response
-           
-            $('#result').html(data);
-
-        })
-        .fail(function() { // if fail then getting message
-
-            // just in case posting failed
-            alert( "Posting failed." );
-
-        }); 
-
-        // to prevent refreshing the whole page page
-        return false;
-
-        });
-    });
-
-</script>
-<script>
 $(document).ready(function(){
  
  function load_unseen_notification(view = '')
  {
   $.ajax({
-   url:"fetch.php",
+   url:"fetchStud.php",
    method:"POST",
    data:{view:view},
    dataType:"json",
