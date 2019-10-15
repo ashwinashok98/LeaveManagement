@@ -14,6 +14,7 @@ if(isset($_SESSION['uname']) )
  </head>
  <body>
   <br /><br />
+  <h1><a href="requestResponse.php">request page</a></h1>
     <div class="container-fluid">
    <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -48,12 +49,12 @@ if(isset($_SESSION['uname']) )
      <label>Enter To Date</label>
      <input type="date" name="toDate" id="toDate" class="form-control" required>
     </div>
-    
+
     <div class="form-group">
      <label>Enter Incharge</label>
      <input type="text" name="incharge" id="incharge" class="form-control" value="NULL"required>
     </div>
-    
+
 
     <div class="form-group">
      <label>Enter faculty name</label>
@@ -70,7 +71,7 @@ if(isset($_SESSION['uname']) )
       </div>
    </form>
 
-   
+
     </div>
  </body>
 </html>
@@ -86,7 +87,7 @@ else
 
 <script>
 $(document).ready(function(){
- 
+
  function load_unseen_notification(view = '')
  {
   $.ajax({
@@ -97,7 +98,7 @@ $(document).ready(function(){
    success:function(data)
    {
     $('.dropdown-menu').html(data.notification);
-    
+
     if(data.unseen_notification > 0)
     {
      $('.count').html(data.unseen_notification);
@@ -105,19 +106,19 @@ $(document).ready(function(){
    }
   });
  }
- 
+
  load_unseen_notification();
- 
- 
- 
+
+
+
  $(document).on('click', '.dropdown-toggle', function(){
   $('.count').html('');
   load_unseen_notification('yes');
  });
- 
- setInterval(function(){ 
-  load_unseen_notification();; 
+
+ setInterval(function(){
+  load_unseen_notification();;
  }, 5000);
- 
+
 });
 </script>

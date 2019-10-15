@@ -17,6 +17,6 @@ if(isset($_SESSION['uname']))
         VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type',' $incharge','$name')";
         mysqli_query($connect, $query);
         echo '<script>window.location.href = "./index.php";</script>';
-    
+
 }
 ?>
