@@ -14,7 +14,6 @@ if(isset($_SESSION['uname']) )
  </head>
  <body>
   <br /><br />
-  <h1><a href="requestResponse.php">request page</a></h1>
     <div class="container-fluid">
    <nav class="navbar navbar-inverse">
     <div class="container-fluid">
