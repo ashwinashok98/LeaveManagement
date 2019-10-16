@@ -157,12 +157,12 @@ if(isset($_SESSION['uname']) )
                                                                 <td><form id='.$row["application_id"].'>';
                                                                         if($row['leaveStatus']==1)
                                                                         {
-                                                                            $output.='<button class="label theme-bg text-white f-15" id='.$acpid.' value='.$acpid.' name="accpt" disabled disabled >Accepted</button></a>
+                                                                            $output.='<button class="label theme-bg text-white f-15" id='.$acpid.' value='.$acpid.' name="accpt" disabled disabled >Accept</button></a>
                                                                             </li></form>';
                                                                         }
                                                                         if($row['leaveStatus']==-1)
                                                                         {
-                                                                            $output.='<button class="label theme-bg2 text-white f-15" id='.$rejid.' value='.$rejid.' name="reject" disabled >Rejected</button></a>
+                                                                            $output.='<button class="label theme-bg2 text-white f-15" id='.$rejid.' value='.$rejid.' name="reject" disabled >Reject</button></a>
                                                                             </li></form>';
                                                                         }
                                                                         if($row['leaveStatus']==0)
