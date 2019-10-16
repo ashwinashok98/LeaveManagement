@@ -3,7 +3,7 @@
     include('./connect.php');
     if (!isset($_SESSION['loggedin']))
     {
-        header('Location: index.html');
+        header('Location: login.html');
         exit();
     }
     if(($_SESSION['admin']==0))

@@ -4,12 +4,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
    <body>
        <?php
+       include('connect.php');
 
             $id="acp123123";
             $state=substr($id,0,3);
             echo($state);
             $id=substr($id,3);
             echo($id);
+            $query1="SELECT name from `user`,`leaveapplication` WHERE user.user_id='16bt6cs013'";
+    $result1 = mysqli_query($connect, $query1);
+    $s=mysqli_fetch_array($result1);
+    $name=$s['name'];
+    var_dump($name);
+    echo($name);
             
 
        ?>

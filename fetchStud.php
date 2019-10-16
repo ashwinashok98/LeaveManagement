@@ -18,35 +18,70 @@ if(isset($_SESSION['uname']) )
     }
     $query = "SELECT * FROM leaveapplication where notification_status=3 and user_id = '".$uid."' ORDER BY application_id DESC LIMIT 5";
     $result = mysqli_query($connect, $query);
-    $output = '';
+    $output = '
+    <div class="noti-head">
+                                <h6 class="d-inline-block m-b-0">Notifications</h6>
+                                <div class="float-right">
+                                    <a href="javascript:" class="m-r-10">mark as read</a>
+                                    <a href="javascript:">clear all</a>
+                                </div>
+                            </div>';
+
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result))
       {
         $output .= '
-        <li>
-        <a href="leave_sheet_stud.php">
-        <strong>';
-        if($row['leaveStatus']==1)
-        {
-            $output.='A  </strong>'.$row["subjectOfLeave"].'<br />';
-        }
-        if($row['leaveStatus']==-1)
-        {
-            $output.='R  </strong>'.$row["subjectOfLeave"].'<br />';
-        }
         
+                            <ul class="noti-body">
+                                
+                                <li class="notification">
+                                    <div class="media">
+                                        
+                                        <div class="media-body">
+                                            <p><strong>';
+                                            if($row['leaveStatus']==1)
+                                            {
+                                                $output.=''.$row["subjectOfLeave"].'</strong></p>
+                                                <p>Request Accepted</p>';
+                                            }
+                                            if($row['leaveStatus']==-1)
+                                            {
+                                              $output.=''.$row["subjectOfLeave"].'</strong></p>
+                                              <p>Request Denied</p>';
+                                            }
+                                            $output.='
+                                        </div>
+                                    </div>
+                                </li>
+                              </ul>
+                            </div>';
         
-        $output.='</a>
-                </li>';
+       
+        
+       
       }
     }
     else{
-        $output .= '<li><a href="#" class="text-bold text-italic">No Notification Found</a></li>';
+      $output .= '
+      <ul class="noti-body">
+          
+          <li class="notification">
+              <div class="media">
+                  
+                  <div class="media-body">
+                      <p><strong>No Notification Found</strong></p>           
+                     
+                  </div>
+              </div>
+          </li>
+        </ul>
+      </div>';
     }
     $status_query = "SELECT * FROM leaveapplication WHERE notification_status=2 and  user_id = '".$uid."'";
     $result_query = mysqli_query($connect, $status_query);
     $count = mysqli_num_rows($result_query);
+    
     $data = array(
         'notification' => $output,
         'unseen_notification'  => $count

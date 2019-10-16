@@ -45,7 +45,7 @@ if(mysqli_num_rows($result) > 0)
     echo '<script language="javascript">';
   echo 'alert("Wrong Password")';
   echo '</script>';
-      echo '<script>window.location.href = "./index.html";</script>';
+      echo '<script>window.location.href = "./login.html";</script>';
 
   }
 }
@@ -54,5 +54,5 @@ else
   echo '<script language="javascript">';
   echo 'alert("User Not Found")';
   echo '</script>';
-  echo '<script>window.location.href = "./index.html";</script>';
+  echo '<script>window.location.href = "./login.html";</script>';
 }
