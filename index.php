@@ -84,7 +84,7 @@ if(isset($_SESSION['uname']) )
                             <div class="pro-head">
                                 <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span><?php echo($_SESSION['uname']) ?></span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                <a href="logout.php" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
@@ -127,74 +127,8 @@ if(isset($_SESSION['uname']) )
                                         </div>
                                         <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
                                             <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <tbody>
-                                                    <?php
-
-                                                            $query = "SELECT * FROM leaveapplication where facultyApproval = '".$_SESSION['uname']."' ORDER BY application_id DESC";
-                                                            $result = mysqli_query($connect, $query);
-                                                            $output = '';
-                                                            if(mysqli_num_rows($result) > 0)
-                                                            {
-                                                            while($row = mysqli_fetch_array($result))
-                                                            {
-                                                                $rejid='rej'.$row["application_id"];
-                                                                $acpid="acp".$row["application_id"];
-                                                                 $output.='<tr class="unread">
-                                                                <td><img class="rounded-circle" style="width:40px;"
-                                                                        src="assets/images/user/avatar-1.jpg"
-                                                                        alt="activity-user"><br>Lingam nikhil</td>
-                                                                <td>
-
-                                                                    <h6 class="mb-1">'.$row["subjectOfLeave"].'</h6>
-                                                                    <p class="m-0" style="max-width:500px;margin: auto;">'.$row["reason"].'</p>
-                                                                </td>
-                                                                <td>
-                                                                    <h6 class="text-muted"><i
-                                                                                class="fas fa-circle text-c-green f-10 m-r-15"></i>'.$row["fromDate"].'</h6><h6 class="text-muted"><i
-                                                                            class="fas fa-circle text-c-red f-10 m-r-15"></i>'.$row["toDate"].'</h6>
-                                                                </td>
-                                                                <td><form id='.$row["application_id"].'>';
-                                                                        if($row['leaveStatus']==1)
-                                                                        {
-                                                                            $output.='<button class="label theme-bg text-white f-15" id='.$acpid.' value='.$acpid.' name="accpt" disabled disabled >Accepted</button></a>
-                                                                            </li></form>';
-                                                                        }
-                                                                        if($row['leaveStatus']==-1)
-                                                                        {
-                                                                            $output.='<button class="label theme-bg2 text-white f-15" id='.$rejid.' value='.$rejid.' name="reject" disabled >Rejected</button></a>
-                                                                            </li></form>';
-                                                                        }
-                                                                        if($row['leaveStatus']==0)
-                                                                        {
-                                                                            $output.='<button class="label theme-bg text-white f-15" id='.$acpid.' value='.$acpid.' name="accpt" >Accept</button></a>';
-                                                                            
-                                                                            $output.='<button class="label theme-bg2 text-white f-15" id='.$rejid.' value='.$rejid.' name="reject" >Reject</button></a>
-                                                                            </li></form>
-                                                                            
-                                                                           </a>
-                                                                           ';
-                                                                        }
-                                                                $output.='</td>
-                                                            </tr>';
-                                                        }
-                                                        echo($output);
-                                                        }
-                                                        else{
-                                                            $output.='<tr class="unread">
-                                                            
-                                                            <td>
-
-                                                                <h6 class="mb-1">No Requests Recieved</h6>
-                                                                
-                                                            </td>
-                                                        
-                                                            </tr>';
-                                                            echo($output);
-                                                        }
-                                                        ?>
-                                                        
-                                                    </tbody>
+                                                <table class="table table-hover" id="res1">
+                                                     <!--[Ajax call for Recent Users ] -->
                                                 </table>
                                             </div>
                                         </div>
@@ -337,17 +271,47 @@ if(isset($_SESSION['uname']) )
                             dataType: "json",
                             success: function (data) {
                                 $('.drop-noti').html(data.notification);
-
+                                check_requests();
                                 if (data.unseen_notification > -1) {
                                     $('.count').html(data.unseen_notification);
                                 }
                             }
                         });
                     }
+                    
+                    function load_unseen_requests(view = '') {
+                        $.ajax({
+                            url: "req_dis.php",
+                            method: "POST",
+                            data: { view: view },
+                            dataType: "json",
+                            success: function (data) {
+                                $('#res1').html(data.output);
+
+                               
+                            }
+                        });
+                    }
+                    function check_requests() {
+                        $.ajax({
+                            url: "check_req.php",
+                            method: "POST",
+                            data: {},
+                            dataType: "json",
+                            success: function (data) {
+                               if(data.changes>0){
+                                load_unseen_requests();
+                               }
+
+                               
+                            }
+                        });
+                    }
+
 
                     load_unseen_notification();
-
-
+                    load_unseen_requests();
+                    check_requests();
 
                     $(document).on('click', '.dropdown-toggle-noti', function () {
                         $('.count').html('');
@@ -355,61 +319,61 @@ if(isset($_SESSION['uname']) )
                     });
 
                     setInterval(function () {
-                        load_unseen_notification();;
-                    }, 2000);
+                        load_unseen_notification();
+                        check_requests();
+                       
+                    }, 5000);
 
-                });
-            </script>
-            <script>
-$(document).ready(function() {
-        $(":button").click(function(e) {
-        e.preventDefault();
-        var t = $(this).attr('id');
-        var user_id = $(this).closest("form").attr('id');
-        var rej="rej"+user_id;
-        var acp="acp"+user_id;
-        
-        if ( t == acp){
-            $(this).attr("disabled", true);
-            $(this).text("Accepted");
-            $("#"+rej).hide();
-            var app_id=acp;
-            
-        }
-        if ( t == rej){
-            $(this).attr("disabled", true);
-            $(this).text("Rejected");
-            $("#"+acp).hide();
-            var app_id=rej;
-            
-        }    
-        
-        $.ajax({
-            type: 'POST',
-            url: 'approve.php',
-            data:{ id: app_id} // getting filed value in serialize form
-        })
-        .done(function(data){ // if getting done then call.
-
-            // show the response
            
-            $('#result').html(data);
+                    $(document).on('click', '.leave-button', function () {
+                        var t = $(this).attr('id');
+                        var user_id = $(this).closest("form").attr('id');
+                        var rej="rej"+user_id;
+                        var acp="acp"+user_id;
+                        ;
+                        
+                        if ( t == acp){
+                            $(this).attr("disabled", true);
+                            $(this).text("Accepted");
+                            $("#"+rej).hide();
+                            var app_id=acp;
+                            
+                        }
+                        if ( t == rej){
+                            $(this).attr("disabled", true);
+                            $(this).text("Rejected");
+                            $("#"+acp).hide();
+                            var app_id=rej;
+                            
+                        }    
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url: 'approve.php',
+                            data:{ id: app_id} // getting filed value in serialize form
+                        })
+                        .done(function(data){ // if getting done then call.
 
-        })
-        .fail(function() { // if fail then getting message
+                            // show the response
+                        
+                            
 
-            // just in case posting failed
-            alert( "Posting failed." );
+                        })
+                        .fail(function() { // if fail then getting message
 
-        }); 
+                           
 
-        // to prevent refreshing the whole page page
-        return false;
+                        }); 
 
-        });
-    });
+                        // to prevent refreshing the whole page page
+                        return false;
 
-</script>
+                        });
+                });
+                       
+       
+            </script>
+            
 
 </body>
 
@@ -421,5 +385,4 @@ else
 {
     echo '<script>window.location.href = "./login.html";</script>';
 }
-
 ?>

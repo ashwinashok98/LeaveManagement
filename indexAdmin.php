@@ -38,79 +38,10 @@ if(isset($_SESSION['uname']) )
 
 <body>
 
-
-    <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
-        <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
-                <div class="b-bg">
-                    <i class="feather icon-trending-up"></i>
-                </div>
-                <span class="b-title">Leave Manager</span>
-            </a>
-        </div>
-        <a class="mobile-menu" id="mobile-header" href="javascript:">
-            <i class="feather icon-more-horizontal"></i>
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
-                            class="feather icon-maximize"></i></a></li>
-                <li class="nav-item dropdown">
-                    <a class="mb-1" href="logout.php">Logout</a>
-
-                </li>
-
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li>
-                    <div class="dropdown">
-                    <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
-                        <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i
-                                class="icon feather icon-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right notification drop-noti">
-                        
-                           
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown drp-user">
-                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon feather icon-settings"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <div class="pro-head">
-                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span><?php echo($_SESSION['uname']) ?></span>
-                                <a href="logout.php" class="dud-logout" title="Logout">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                            </div>
-                            <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
-                                        Settings</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
-                                        Profile</a></li>
-                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
-                                        Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
-                                        Lock Screen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <!-- [ Header ] end -->
-
-    <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
+    <div class="main-container">
+        <div class="wrapper">
             <div class="pcoded-content">
-                <div class="pcoded-inner-content">
+                <div class="inner-content">
                     <!-- [ breadcrumb ] start -->
 
                     <!-- [ breadcrumb ] end -->
@@ -120,21 +51,38 @@ if(isset($_SESSION['uname']) )
                             <div class="row">
 
 
-                                <div class="col-xl-8 col-md-6">
-                                    <div class="card Recent-Users">
-                                        <div class="card-header">
-                                            <h5>Recent Leave Requests</h5>
-                                        </div>
-                                        <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover" id="res1">
-                                                     <!--[Ajax call for Recent Users ] -->
-                                                        
-                                                </table>
-                                            </div>
-                                        </div>
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card Update-Student">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-center">Upload Student File</h5>
+                                    <form method="post" id="export_student_excel">            
+                                        <label class="btn btn-lg btn-primary btn-block text-uppercase">
+                                            Select Excel
+                                            <input type="file" name="student_excel_file" id="student_excel_file" style="display: none;">
+                                        </label>
+                                    </form>
+                                        
+                                    </div>
                                     </div>
                                 </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card Update-Teacher">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-center">Upload Teacher File</h5>
+                                    <form method="post" id="export_teacher_excel">            
+                                        <label class="btn btn-lg btn-primary btn-block text-uppercase">
+                                            Select Excel
+                                            <input type="file" name="teacher_excel_file" id="teacher_excel_file" style="display: none;">
+                                        </label>
+                                    </form>
+                                        
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                               
+                                
                                 <!--[ Recent Users ] end-->
 
                                 <!-- [ statistics year chart ] start -->
@@ -178,10 +126,18 @@ if(isset($_SESSION['uname']) )
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row d-flex align-items-center">
+                                                <div class="col-auto">
+                                <div class="card-block">
+                                    <div id="result"></div>
+                                </div>
+                                                </div>
+                                
+                                </div>
 
 
                                 <!-- [ Main Content ] end -->
-                                <div class="row">
+                               <!-- <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
@@ -256,60 +212,53 @@ if(isset($_SESSION['uname']) )
                     </div>
                 </div>
             </div>
-
+                                                    -->
             <!-- Required Js -->
             <script src="assets/js/vendor-all.min.js"></script>
             <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
             <script src="assets/js/pcoded.min.js"></script>
             <script>
-                $(document).ready(function () {
+  $(document).ready(function(){  
+      $('#student_excel_file').change(function(){  
+           $('#export_student_excel').submit();  
+      }); 
+      $('#teacher_excel_file').change(function(){  
+           $('#export_teacher_excel').submit();  
+      });
 
-                    function load_unseen_notification(view = '') {
-                        $.ajax({
-                            url: "fetchStud.php",
-                            method: "POST",
-                            data: { view: view },
-                            dataType: "json",
-                            success: function (data) {
-                                $('.drop-noti').html(data.notification);
-                                load_unseen_requests();
-                                if (data.unseen_notification > -1) {
-                                    $('.count').html(data.unseen_notification);
-                                }
-                            }
-                        });
-                    }
-                    function load_unseen_requests(view = '') {
-                        $.ajax({
-                            url: "req_dis_stud.php",
-                            method: "POST",
-                            data: { view: view },
-                            dataType: "json",
-                            success: function (data) {
-                                $('#res1').html(data.output);
+      $('#export_teacher_excel').on('submit', function(event){ 
+          
+           event.preventDefault();  
+           $.ajax({  
+                url:"uploadExcel.php",  
+                method:"POST",  
+                data:new FormData(this),
+                contentType:false,  
+                processData:false,  
+                success:function(data){  
+                     $('#result').html(data);  
+                     $('#teacher_excel_file').val('');  
+                }  
+           });  
+      });  
+      $('#export_student_excel').on('submit', function(event){ 
+          
+          event.preventDefault();  
+          $.ajax({  
+               url:"uploadExcel.php",  
+               method:"POST",  
+               data:new FormData(this),
+               contentType:false,  
+               processData:false,  
+               success:function(data){  
+                    $('#result').html(data);  
+                    $('#student_excel_file').val('');  
+               }  
+          });  
+     });  
+    });
 
-                               
-                            }
-                        });
-                    }
-
-                    load_unseen_notification();
-                    load_unseen_requests();
-
-
-
-                    $(document).on('click', '.dropdown-toggle-noti', function () {
-                        $('.count').html('');
-                        load_unseen_notification('yes');
-                    });
-
-                    setInterval(function () {
-                        load_unseen_notification();
-                        
-                    }, 2000);
-
-                });
-            </script>
+ </script>
 
 </body>
 
@@ -321,5 +270,4 @@ else
 {
     echo '<script>window.location.href = "./login.html";</script>';
 }
-
 ?>
