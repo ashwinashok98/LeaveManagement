@@ -33,6 +33,8 @@ if(isset($_SESSION['uname']) )
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- user css-->
+    <link rel="stylesheet" href="assets/css/user-style.css">
 
 </head>
 
@@ -40,22 +42,11 @@ if(isset($_SESSION['uname']) )
 
 
     <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
-        <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
-                <div class="b-bg">
-                    <i class="feather icon-trending-up"></i>
-                </div>
-                <span class="b-title">Datta Able</span>
-            </a>
-        </div>
-        <a class="mobile-menu" id="mobile-header" href="javascript:">
-            <i class="feather icon-more-horizontal"></i>
-        </a>
-        <div class="collapse navbar-collapse">
+    <header class="navbar header navbar-expand-lg navbar-light">
+        
+        <div class="navbar header navbar-expand-lg navbar-light navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
+                <li class="pdr-10"><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
                             class="feather icon-maximize"></i></a></li>
                 <li class="nav-item dropdown">
                     <a class="mb-1" href="logout.php">Logout</a>
@@ -64,7 +55,7 @@ if(isset($_SESSION['uname']) )
 
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li>
+                <li class="pdr-10">
                     <div class="dropdown">
                     <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
                         <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i
@@ -107,10 +98,10 @@ if(isset($_SESSION['uname']) )
     <!-- [ Header ] end -->
 
     <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
-            <div class="pcoded-content">
-                <div class="pcoded-inner-content">
+    <div class="main-container">
+        <div class="wrapper">
+            <div class="content">
+                <div class="inner-content">
                     <!-- [ breadcrumb ] start -->
 
                     <!-- [ breadcrumb ] end -->

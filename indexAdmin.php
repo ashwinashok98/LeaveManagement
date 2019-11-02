@@ -51,7 +51,7 @@ if(isset($_SESSION['uname']) )
                             <div class="row">
 
 
-                                <div class="col-xl-4 col-md-6">
+                                <div class="col-xl-6 col-md-6">
                                     <div class="card Update-Student">
                                     <div class="card-body">
                                     <h5 class="card-title text-center">Upload Student File</h5>
@@ -66,7 +66,7 @@ if(isset($_SESSION['uname']) )
                                     </div>
                                 </div>
                                 
-                                <div class="col-xl-4 col-md-6">
+                                <div class="col-xl-6 col-md-6">
                                     <div class="card Update-Teacher">
                                     <div class="card-body">
                                     <h5 class="card-title text-center">Upload Teacher File</h5>
@@ -81,51 +81,72 @@ if(isset($_SESSION['uname']) )
                                     </div>
                                     
                                 </div>
+                                <br>
+                                <br><br>
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="card Update-Student">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-center">Update Students</h5>
+                                    <form class="form-inline" method="post" id="studID">
+                                                <div class="form-group mb-2">
+                                                    
+                                                    <label for="Id" class="sr-only">User ID</label>
+                                                    <input type="text" class="form-control" id="stud_id" name="stud_id" placeholder="User ID" required>
+                                                </div>
+                                                <pre> </pre>
+                                                <input type="submit" class="btn btn-primary mb-2" value="Show details">
+                                            </form>
+                                        
+                                    </div>
+                                    <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="stud-res">
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="card Update-Teacher">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-center">Update Teacher</h5>
+                                    <form class="form-inline" method="post" id="teachID">
+                                                <div class="form-group mb-2">
+                                                    
+                                                    <label for="Id" class="sr-only">User ID</label>
+                                                    <input type="text" class="form-control" id="teach_id" name="teach_id" placeholder="User ID" required>
+                                                </div>
+                                                <pre> </pre>
+                                                <input type="submit" class="btn btn-primary mb-2" value="Show details">
+                                            </form>
+                                            
+                                        
+                                    </div>
+                                     <div class="card-block table-border-style">
+                                        <form class="form-inline" id="details">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="teach-res">
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                        </form>
+                                            <div class="form-group mb-2" id="update_res">
+                        
+                                            </div>
+                                        </div>
+                                       
+                                    
+                                    
+                                </div>
+                                
                                
                                 
                                 <!--[ Recent Users ] end-->
 
-                                <!-- [ statistics year chart ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card card-event">
-                                        <div class="card-block">
-                                            <div class="row align-items-center justify-content-center">
-                                                <div class="col">
-                                                    <h5 class="m-0">Upcoming Holiday</h5>
-                                                </div>
-
-                                            </div>
-                                            <h2 class="mt-3 f-w-300">10th OCT<sub class="text-muted f-14">Diwali</sub>
-                                            </h2>
-                                            <h6 class="text-muted mt-4 mb-0">9.00 p.m - Diwali Party </h6>
-                                            <i class="fab fa-angellist text-c-purple f-50"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-block border-bottom">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-auto">
-                                                    <i class="feather icon-zap f-30 text-c-green"></i>
-                                                </div>
-                                                <div class="col">
-                                                    <h3 class="f-w-300">23</h3>
-                                                    <span class="d-block text-uppercase">LEAVES TAKEN</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-block">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-auto">
-                                                    <i class="feather icon-zap f-30 text-c-green"></i>
-                                                </div>
-                                                <div class="col">
-                                                    <h3 class="f-w-300">30</h3>
-                                                    <span class="d-block text-uppercase">LEAVES LEFT</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="row d-flex align-items-center">
                                                 <div class="col-auto">
                                 <div class="card-block">
@@ -225,6 +246,7 @@ if(isset($_SESSION['uname']) )
       $('#teacher_excel_file').change(function(){  
            $('#export_teacher_excel').submit();  
       });
+     
 
       $('#export_teacher_excel').on('submit', function(event){ 
           
@@ -256,6 +278,55 @@ if(isset($_SESSION['uname']) )
                }  
           });  
      });  
+     $('#teachID').on('submit', function(event){ 
+          var tid=$("#teach_id").val();
+          event.preventDefault();  
+          $.ajax({  
+               url:"showDetails.php",  
+               method:"POST",  
+               data:{Id:tid,desig:"faculty"},
+               dataType: "json", 
+               success:function(data){  
+                $('#teach-res').html(data.output);
+                alert("success")
+                
+                      
+               }
+          });  
+     });
+     $('#studID').on('submit', function(event){ 
+          
+        var sid=$("#stud_id").val();
+          event.preventDefault();  
+          $.ajax({  
+               url:"showDetails.php",  
+               method:"POST",  
+               data:{Id:sid,desig:"student"},
+               dataType: "json", 
+               success:function(data){  
+                $('#stud-res').html(data.output);
+                
+               }
+          });  
+          
+     });
+     $('#details').on('submit', function(event){ 
+        var tid=$("#teach_id").val();
+          event.preventDefault();  
+          $.ajax({  
+               url:"updateDetails.php",  
+               method:"POST",  
+               data:{Id:tid,desig:"faculty"},
+               dataType: "json", 
+               success:function(data){  
+                $('#update_res').html(data.output);
+                alert("success")
+                
+                      
+               }
+          }); 
+            
+       });
     });
 
  </script>
