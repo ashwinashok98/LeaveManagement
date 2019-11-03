@@ -17,7 +17,7 @@
       $output.=' 
                 <tr>
                   <td><b>UserID</b></td>
-                  <td> <input type="text" class="form-control" id="uid" name="uid" value="'.$row['user_id'].'" disabled ></td>  
+                  <td>'.$row['user_id'].'<input type="text" class="form-control" id="uid" name="uid" value="'.$row['user_id'].'" hidden></td>  
                   <td> <input type="text" class="form-control" id="desig" name="desig" value="'.$desig.'" hidden ></td>  
 
                 </tr>

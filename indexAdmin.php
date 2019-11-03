@@ -4,7 +4,7 @@ if(isset($_SESSION['uname']) )
 {
     $uid=$_SESSION['uid'];
     include("connect.php");
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +33,69 @@ if(isset($_SESSION['uname']) )
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- user css-->
+    <link rel="stylesheet" href="assets/css/user-style.css">
 
 </head>
 
 <body>
+    
+    <!-- [ Header ] start -->
+    <header class="navbar header navbar-expand-lg navbar-light">
+        
+        <div class="navbar header navbar-expand-lg navbar-light navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="pdr-10"><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
+                            class="feather icon-maximize"></i></a></li>
+                <li class="nav-item dropdown">
+                    <a class="mb-1" href="logout.php">Logout</a>
+
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="pdr-10">
+                    <div class="dropdown">
+                    <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
+                        <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i
+                                class="icon feather icon-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right notification drop-noti">
+                                
+                           
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown drp-user">
+                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon feather icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-notification">
+                            <div class="pro-head">
+                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span><?php echo($_SESSION['uname']) ?></span>
+                                <a href="logout.php" class="dud-logout" title="Logout">
+                                    <i class="feather icon-log-out"></i>
+                                </a>
+                            </div>
+                            <ul class="pro-body">
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
+                                        Settings</a></li>
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
+                                        Profile</a></li>
+                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
+                                        Messages</a></li>
+                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
+                                        Lock Screen</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+
 
     <div class="main-container">
         <div class="wrapper">
@@ -99,11 +158,13 @@ if(isset($_SESSION['uname']) )
                                         
                                     </div>
                                     <div class="card-block table-border-style">
+                                    <form class="form-inline" id="details" method="post" action="updateDetails.php">
                                             <div class="table-responsive">
                                                 <table class="table table-hover" id="stud-res">
                                                 </tbody>
                                                 </table>
                                             </div>
+                                    </form>
                                         </div>
                                     </div>
                                     
@@ -125,7 +186,7 @@ if(isset($_SESSION['uname']) )
                                         
                                     </div>
                                      <div class="card-block table-border-style">
-                                        <form class="form-inline" id="details">
+                                        <form class="form-inline" id="details" method="post" action="updateDetails.php">
                                             <div class="table-responsive">
                                                 <table class="table table-hover" id="teach-res">
                                                 </tbody>
@@ -133,9 +194,9 @@ if(isset($_SESSION['uname']) )
                                             </div>
                                             
                                         </form>
-                                            <div class="form-group mb-2" id="update_res">
+                                            <!--<div class="form-group mb-2" id="update_res">
                         
-                                            </div>
+                                            </div>-->
                                         </div>
                                        
                                     
@@ -310,23 +371,25 @@ if(isset($_SESSION['uname']) )
           });  
           
      });
-     $('#details').on('submit', function(event){ 
-        var tid=$("#teach_id").val();
-          event.preventDefault();  
-          $.ajax({  
-               url:"updateDetails.php",  
-               method:"POST",  
-               data:{Id:tid,desig:"faculty"},
-               dataType: "json", 
-               success:function(data){  
-                $('#update_res').html(data.output);
-                alert("success")
-                
+    //  $('#details').on('submit', function(event){ 
+    //     var uid=$("#uid").val();
+    //     var name=$("#name").val();
+    //     var dep=$("#dep").val();
+    //     var email=$("#email").val();
+    //     var desig=$("#desig").val();
+    //     event.preventDefault();  
+    //       $.ajax({  
+    //            url:"showDetails.php",  
+    //            method:"POST",  
+    //            data:{Id:'123',desig:"faculty"},
+    //            dataType: "json", 
+    //            success:function(data){  
+    //             $('#stud-res').html(data.output);
                       
-               }
-          }); 
+    //            }
+    //       }); 
             
-       });
+    //    });
     });
 
  </script>
