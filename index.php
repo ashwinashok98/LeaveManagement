@@ -99,20 +99,45 @@ if (isset($_SESSION['uname'])) {
                                 <div class="row mgl-10">
 
 
-                                    <div class="col-xl-8 col-md-6">
-                                        <div class="card Recent-Users">
-                                            <div class="card-header">
-                                                <h5>Recent Leave Requests</h5>
-                                            </div>
-                                            <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover" id="res1">
-                                                        <!--[Ajax call for Recent Users ] -->
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-xl-8 col-md-6">
+                           <div class="card Recent-Users">
+                              <div class="card-header">
+                                 <h5>Recent Leave Requests</h5>
+                              </div>
+                              <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
+                                 <div class="bs-example">
+                                    <ul id="myTab" class="nav nav-tabs">
+                                       <li class="nav-item">
+                                          <a href="#s_req" class="nav-link active" data-toggle="tab">Student Requests</a>
+                                       </li>
+                                       <li class="nav-item">
+                                          <a href="#t_req" class="nav-link" data-toggle="tab">Your Requests</a>
+                                       </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                       <div class="tab-pane fade show active" id="s_req">
+                                          <div class="table-responsive">
+                                             <table class="table table-hover" id="res1">
+                                                <!--[Ajax call for Recent Users ] -->
+                                             </table>
+                                          </div>
+                                       </div>
+                                       <div class="tab-pane fade" id="t_req">
+                                          <div class="table-responsive">
+                                             <table class="table table-hover" id="res2">
+                                                <!--[Ajax call for Recent Users ] -->
+                                             </table>
+                                          </div>
+                                       </div>
+
                                     </div>
+
+                                 </div>
+
+                              </div>
+                           </div>
+                        </div>
                                     <!--[ Recent Users ] end-->
 
                                     <!-- [ statistics year chart ] start -->
@@ -271,72 +296,7 @@ if (isset($_SESSION['uname'])) {
 
 
                                     <!-- [ Main Content ] end -->
-                                    <!--  <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card card-event">
-                                                <div class="card-block">
-                                                    <div class="row align-items-center justify-content-center">
-                                                        <div class="card">
-                                                            <div class="card-header">
-                                                                <h5> LEAVE FORM</h5>
-                                                            </div>
-                                                            <div class="card-body">
-
-                                                                <div class="row">
-                                                                    <div class="col-lg-6">
-                                                                        <form method="post" id="leave_form" action="">
-                                                                            <div class="form-group">
-                                                                                <label>Subject</label>
-                                                                                <input type="text" class="form-control" placeholder="Subject">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="exampleFormControlSelect1">Faculty
-                                                                                    substitute</label>
-                                                                                <select class="form-control" name="name" id="name" required>
-                                                                                    <option disabled selected>Select Teacher</option>
-                                                                                    <option>Shilpa Das</option>
-                                                                                    <option>Shilpa KS</option>
-                                                                                    <option>anusha</option>
-                                                                                    <option>Vivek V</option>
-                                                                                    <option>Bleh whatevs</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <label for="fromDate">From-Date</label>
-                                                                                <input type="date" class="form-control" name="fromDate" id="fromDate" required>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="toDate">To-Date</label>
-                                                                                <input type="date" class="form-control" name="toDate" id="toDate" required>
-                                                                            </div>
-
-
-
-                                                                    </div>
-                                                                    <div class="col-lg-6">
-
-
-
-                                                                        <div class="form-group">
-                                                                            <label for="reason">Reason for absence</label>
-                                                                            <textarea class="form-control" name="reason" id="reason" rows="9" required></textarea>
-                                                                        </div>
-                                                                        <input type="submit" class="btn btn-primary" value="Submit" name="post" id="post">
-                                                                        </form>
-
-                                                                    </div>
-                                                                </div>
-
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                   
                                 </div>
                             </div>
                         </div>
@@ -436,6 +396,7 @@ if (isset($_SESSION['uname'])) {
                         dataType: "json",
                         success: function(data) {
                             $('#res1').html(data.output);
+                            $('#res2').html(data.output1);
 
 
                         }

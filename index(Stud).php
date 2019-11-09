@@ -1,114 +1,302 @@
 <?php
 session_start();
-if(isset($_SESSION['uname']) )
-{
+
+include "connect.php";
 
 ?>
 <!DOCTYPE html>
-<html>
- <head>
-  <title>Home</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- </head>
- <body>
-  <br /><br />
-    <div class="container-fluid">
-   <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Leave Application::<?php echo($_SESSION['uname']); ?></a>
-     </div>
-     <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <span class="glyphicon glyphicon-bell" style="font-size:18px;"></span></a>
-       <ul class="dropdown-menu"></ul>
-      </li>
-     </ul>
-    </div>
-   </nav>
-   <br />
-   <form method="post" id="leave_form" action="./insertStud.php">
-    <div class="form-group">
-     <label>Enter Subject</label>
-     <input type="text" name="subject" id="subject" class="form-control" required>
-    </div>
-    <div class="form-group">
-     <label>Enter Reason</label>
-     <textarea name="reason" id="reason" class="form-control" rows="5" required></textarea>
-    </div>
-    <div class="form-group">
-     <label>Enter From Date</label>
-     <input type="date" name="fromDate" id="fromDate" class="form-control" required>
-     <label>Enter To Date</label>
-     <input type="date" name="toDate" id="toDate" class="form-control" required>
-    </div>
-    
+<html lang="en">
 
-    <div class="form-group">
-     <label>Enter faculty name</label>
-     <input type ="text" name="name" id="name" class="form-control"required>
-    </div>
-    <div class="form-group">
-     <input type="submit" name="post" id="post" class="btn btn-info" value="Post" required>
-    </div>
-   </form><br><br>
+<head>
 
-   <form method="post" id="logout" action="logout.php">
-      <div class="form-group">
-       <input type="submit" name="logout" id="logout" class="btn btn-info" value="Logout" />
+
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+   <!-- Favicon icon -->
+   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+   <!-- fontawesome icon -->
+   <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
+   <!-- animation css -->
+   <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
+   <!-- vendor css -->
+   <link rel="stylesheet" href="assets/css/style.css">
+   <!-- user css-->
+   <link rel="stylesheet" href="assets/css/user-style.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+ <!--<script type="text/javascript">
+   $(document).ready(function() {
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+         var activeTab = $(e.target).text(); // Get the name of active tab
+         var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
+         $(".active-tab span").html(activeTab);
+         $(".previous-tab span").html(previousTab);
+      });
+   });
+</script> -->
+
+<body>
+
+
+
+   <!-- [ Header ] start -->
+   <header class="navbar header navbar-expand-lg navbar-light">
+
+      <div class="navbar header navbar-expand-lg navbar-light navbar-collapse">
+         <ul class="navbar-nav mr-auto">
+            <li class="pdr-10"><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+            <li class="nav-item dropdown">
+               <a class="mb-1" href="logout.php">Logout</a>
+            </li>
+
+         </ul>
+         <ul class="navbar-nav ml-auto">
+            <li class="pdr-10">
+               <div class="dropdown">
+                  <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
+                  <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right notification drop-noti">
+
+
+                  </div>
+               </div>
+            </li>
+            <li>
+               <div class="dropdown drp-user">
+                  <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                     <i class="icon feather icon-settings"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right profile-notification">
+                     <div class="pro-head">
+                        <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                        <span><?php echo ($_SESSION['uname']) ?></span>
+                        <a href="logout.php" class="dud-logout" title="Logout">
+                           <i class="feather icon-log-out"></i>
+                        </a>
+                     </div>
+                     <ul class="pro-body">
+                        <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
+                              Settings</a></li>
+                        <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
+                              Profile</a></li>
+                        <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
+                              Messages</a></li>
+                        <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
+                              Lock Screen</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+         </ul>
       </div>
-   </form>
+   </header>
+   <!-- [ Header ] end -->
 
-   
-    </div>
- </body>
+   <!-- [ Main Content ] start -->
+   <div class="main-container mgl-10 mgr-10">
+      <div class="wrapper mgl-10">
+         <div class="content">
+            <div class="inner-content">
+               <!-- [ breadcrumb ] start -->
+
+               <!-- [ breadcrumb ] end -->
+               <div class="main-body">
+                  <div class="page-wrapper">
+                     <!-- [ Main Content ] start -->
+                     <div class="row mgl-10">
+
+
+                        <div class="col-xl-8 col-md-6">
+                           <div class="card Recent-Users">
+                              <div class="card-header">
+                                 <h5>Recent Leave Requests</h5>
+                              </div>
+                              <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
+                                 <div class="bs-example">
+                                    <ul id="myTab" class="nav nav-tabs">
+                                       <li class="nav-item">
+                                          <a href="#s_req" class="nav-link active" data-toggle="tab">Student Requests</a>
+                                       </li>
+                                       <li class="nav-item">
+                                          <a href="#t_req" class="nav-link" data-toggle="tab">Your Requests</a>
+                                       </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                       <div class="tab-pane fade show active" id="s_req">
+                                          <div class="table-responsive">
+                                             <table class="table table-hover" id="res1">
+                                                <!--[Ajax call for Recent Users ] -->
+                                             </table>
+                                          </div>
+                                       </div>
+                                       <div class="tab-pane fade" id="t_req">
+                                          <div class="table-responsive">
+                                             <table class="table table-hover" id="res2">
+                                                <!--[Ajax call for Recent Users ] -->
+                                             </table>
+                                          </div>
+                                       </div>
+
+                                    </div>
+
+                                 </div>
+
+                              </div>
+                           </div>
+                        </div>
+                        <!--[ Recent Users ] end-->
+
+
+
+
+                        <!-- [ Main Content ] end -->
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- Required Js -->
+   <script src="assets/js/vendor-all.min.js"></script>
+   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+   <script src="assets/js/pcoded.min.js"></script>
+   <script>
+      $(document).ready(function() {
+
+         function load_unseen_notification(view = '') {
+            $.ajax({
+               url: "fetch.php",
+               method: "POST",
+               data: {
+                  view: view
+               },
+               dataType: "json",
+               success: function(data) {
+                  $('.drop-noti').html(data.notification);
+                  check_requests();
+                  if (data.unseen_notification > -1) {
+                     $('.count').html(data.unseen_notification);
+                  }
+               }
+            });
+         }
+
+         function load_unseen_requests(view = '') {
+            $.ajax({
+               url: "req_dis.php",
+               method: "POST",
+               data: {
+                  view: view
+               },
+               dataType: "json",
+               success: function(data) {
+                  $('#res1').html(data.output);
+                  $('#res2').html(data.output1);
+
+
+               }
+            });
+         }
+
+         function check_requests() {
+            $.ajax({
+               url: "check_req.php",
+               method: "POST",
+               data: {},
+               dataType: "json",
+               success: function(data) {
+                  if (data.changes > 0) {
+                     load_unseen_requests();
+                  }
+
+
+               }
+            });
+         }
+
+
+         load_unseen_notification();
+         load_unseen_requests();
+         check_requests();
+
+         $(document).on('click', '.dropdown-toggle-noti', function() {
+            $('.count').html('');
+            load_unseen_notification('yes');
+         });
+
+         setInterval(function() {
+            load_unseen_notification();
+            check_requests();
+
+         }, 5000);
+
+
+         $(document).on('click', '.leave-button', function() {
+            var t = $(this).attr('id');
+            var user_id = $(this).closest("form").attr('id');
+            var rej = "rej" + user_id;
+            var acp = "acp" + user_id;;
+
+            if (t == acp) {
+               $(this).attr("disabled", true);
+               $(this).text("Accepted");
+               $("#" + rej).hide();
+               var app_id = acp;
+
+            }
+            if (t == rej) {
+               $(this).attr("disabled", true);
+               $(this).text("Rejected");
+               $("#" + acp).hide();
+               var app_id = rej;
+
+            }
+
+            $.ajax({
+                  type: 'POST',
+                  url: 'approve.php',
+                  data: {
+                     id: app_id
+                  } // getting filed value in serialize form
+               })
+               .done(function(data) { // if getting done then call.
+
+                  // show the response
+
+
+
+               })
+               .fail(function() { // if fail then getting message
+
+
+
+               });
+
+            // to prevent refreshing the whole page page
+            return false;
+
+         });
+      });
+   </script>
+
+
+</body>
+
 </html>
 <?php
 
-}
-else
-{
-    echo '<script>window.location.href = "./login.php";</script>';
-}
 
 ?>
-
-<script>
-$(document).ready(function(){
- 
- function load_unseen_notification(view = '')
- {
-  $.ajax({
-   url:"fetchStud.php",
-   method:"POST",
-   data:{view:view},
-   dataType:"json",
-   success:function(data)
-   {
-    $('.dropdown-menu').html(data.notification);
-    
-    if(data.unseen_notification > 0)
-    {
-     $('.count').html(data.unseen_notification);
-    }
-   }
-  });
- }
- 
- load_unseen_notification();
- 
- 
- 
- $(document).on('click', '.dropdown-toggle', function(){
-  $('.count').html('');
-  load_unseen_notification('yes');
- });
- 
- setInterval(function(){ 
-  load_unseen_notification();; 
- }, 2000);
- 
-});
-</script>
