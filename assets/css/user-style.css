@@ -1,22 +1,20 @@
 .pdr-15
 {
-    padding-right: 10px;
+    padding-right: 15px;
 }
 .pdl-15
 {
-    padding-right: 10px;
+    padding-right: 15px;
 }
 .pdt-15
 {
-    padding-right: 10px;
+    padding-right: 15px;
 }
 .pdb-15
 {
-    padding-right: 10px;
+    padding-right: 15px;
 }
-.pdd-15{
-    padding: 10px;
-}
+
 .pdr-10
 {
     padding-right: 10px;
@@ -33,6 +31,19 @@
 {
     padding-right: 10px;
 }
-.pdb-10{
-    padding: 10px;
+.mgr-10
+{
+    margin-right: 10px;
+}
+.mgl-10
+{
+    margin-left: 10px;
+}
+.mgt-10
+{
+    margin-top: 10px;
+}
+.mgb-10
+{
+    margin-bottom: 10px;
 }
