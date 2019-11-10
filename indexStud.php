@@ -4,7 +4,7 @@ if (isset($_SESSION['uname'])) {
     $uid = $_SESSION['uid'];
     include("connect.php");
 
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -74,7 +74,7 @@ if (isset($_SESSION['uname'])) {
                                         <i class="feather icon-log-out"></i>
                                     </a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </li>
@@ -299,9 +299,7 @@ if (isset($_SESSION['uname'])) {
 
     </html>
 <?php
-
 } else {
-    echo '<script>window.location.href = "./login.html";</script>';
+    echo '<script>window.location.href = "pageError.html";</script>';
 }
-
 ?>

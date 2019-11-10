@@ -4,6 +4,11 @@ if(isset($_SESSION['uname']) )
 {
 
 ?>
+<?php
+
+if($_SESSION['desig']=='faculty' || $_SESSION['desig']=='hod'){
+
+?>
 <!DOCTYPE html>
 <html>
  <head>
@@ -74,6 +79,14 @@ if(isset($_SESSION['uname']) )
     </div>
  </body>
 </html>
+
+<?php
+
+}
+else {
+    echo '<script>window.location.href = "pageError.html";</script>';
+}
+?>
 <?php
 
 }

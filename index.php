@@ -1,11 +1,14 @@
 <?php
-
 session_start();
 if (isset($_SESSION['uname'])) {
     $uid = $_SESSION['uid'];
     include "connect.php";
+?>
+<?php
 
-    ?>
+if($_SESSION['desig']=='faculty'){
+
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -269,7 +272,7 @@ if (isset($_SESSION['uname'])) {
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <input type="submit" class="btn btn-primary" value="Submit" name="post" id="post">
-                                                                       
+
                                                                 </div>
                                                             </div>
 
@@ -331,10 +334,10 @@ if (isset($_SESSION['uname'])) {
             }
             function call_incharge(clicked_id)
             {
-               
+
                     var t = clicked_id;
-                    
-                    
+
+
                      $.ajax({
                          url: "showincharge.php",
                          method: "POST",
@@ -344,15 +347,15 @@ if (isset($_SESSION['uname'])) {
                          dataType: "json",
                          success: function(data) {
                              var out = data.output;
-                            
-                             
+
+
                              $('#detailRes').html(data.output);
 
 
                          }
                      });
             }
-            
+
             function sendDate() {
 
                 if ($("#fromDate").val() == "") {
@@ -360,7 +363,7 @@ if (isset($_SESSION['uname'])) {
                     return;
                 }
                 var fromdate = $('#fromDate').val();
-                var todate = $('#toDate').val(); 
+                var todate = $('#toDate').val();
 
                 $.ajax({
                     url: "teachersForm.php",
@@ -420,7 +423,7 @@ if (isset($_SESSION['uname'])) {
                      document.body.removeChild(frame);
                      return el;
                  }
-                 
+
 
 
 
@@ -447,7 +450,7 @@ if (isset($_SESSION['uname'])) {
                  });*/
                  $('.info-dis').on('click', function() {
                     var t = $(this).attr('id');
-                    
+
                     alert(t);
                      $.ajax({
                          url: "showincharge.php",
@@ -458,8 +461,8 @@ if (isset($_SESSION['uname'])) {
                          dataType: "json",
                          success: function(data) {
                              var out = data.output;
-                            
-                             
+
+
                              $('#detailRes').html("hello");
 
 
@@ -587,6 +590,11 @@ if (isset($_SESSION['uname'])) {
     </body>
 
     </html>
+    <?php
+        } else {
+            echo '<script>window.location.href = "pageError.html";</script>';
+        }
+    ?>
 <?php
 
 } else {

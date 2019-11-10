@@ -3,8 +3,13 @@ session_start();
 if (isset($_SESSION['uname'])) {
     $uid = $_SESSION['uid'];
     include("connect.php");
-   
-    ?>
+
+?>
+<?php
+
+if($_SESSION['desig']=='hod'){
+
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -74,7 +79,7 @@ if (isset($_SESSION['uname'])) {
                                         <i class="feather icon-log-out"></i>
                                     </a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </li>
@@ -82,7 +87,7 @@ if (isset($_SESSION['uname'])) {
             </div>
         </header>
         <!-- [ Header ] end -->
-        
+
         <!-- [ Main Content ] start -->
         <div class="main-container mgl-10 mgr-10">
             <div class="wrapper mgl-10">
@@ -176,7 +181,7 @@ if (isset($_SESSION['uname'])) {
                                         </div>
                                     </div>
                                     <!-- Modal end-->
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -195,10 +200,10 @@ if (isset($_SESSION['uname'])) {
             }
             function call_incharge(clicked_id)
             {
-               
+
                     var t = clicked_id;
-                    
-                  
+
+
                      $.ajax({
                          url: "showincharge.php",
                          method: "POST",
@@ -208,8 +213,8 @@ if (isset($_SESSION['uname'])) {
                          dataType: "json",
                          success: function(data) {
                              var out = data.output;
-                            
-                             
+
+
                              $('#detailRes').html(data.output);
 
 
@@ -217,7 +222,7 @@ if (isset($_SESSION['uname'])) {
                      });
             }
                 $(document).ready(function() {
-                   
+
 
                     function load_unseen_notification(view = '') {
                         $.ajax({
@@ -335,6 +340,11 @@ if (isset($_SESSION['uname'])) {
     </body>
 
     </html>
+    <?php
+        } else {
+            echo '<script>window.location.href = "pageError.html";</script>';
+        }
+    ?>
 <?php
 
 } else {

@@ -3,8 +3,12 @@ session_start();
 if (isset($_SESSION['uname'])) {
     $uid = $_SESSION['uid'];
     include("connect.php");
+?>
 
-    ?>
+<?php
+if($_SESSION['desig']=='admin' ){
+
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -96,9 +100,9 @@ if (isset($_SESSION['uname'])) {
                                                         <input type="file" name="student_excel_file" id="student_excel_file" style="display: none;">
                                                     </label>
                                                 </form>
-                                               
+
                                                     <div id="result_student_excel"></div>
-                                                
+
 
                                             </div>
                                         </div>
@@ -174,7 +178,7 @@ if (isset($_SESSION['uname'])) {
 
                                                 </form>
                                                 <!--<div class="form-group mb-2" id="update_res">
-                        
+
                                             </div>-->
                                             </div>
 
@@ -273,23 +277,23 @@ if (isset($_SESSION['uname'])) {
                                                     });
 
                                                 });
-                                                //  $('#details').on('submit', function(event){ 
+                                                //  $('#details').on('submit', function(event){
                                                 //     var uid=$("#uid").val();
                                                 //     var name=$("#name").val();
                                                 //     var dep=$("#dep").val();
                                                 //     var email=$("#email").val();
                                                 //     var desig=$("#desig").val();
-                                                //     event.preventDefault();  
-                                                //       $.ajax({  
-                                                //            url:"showDetails.php",  
-                                                //            method:"POST",  
+                                                //     event.preventDefault();
+                                                //       $.ajax({
+                                                //            url:"showDetails.php",
+                                                //            method:"POST",
                                                 //            data:{Id:'123',desig:"faculty"},
-                                                //            dataType: "json", 
-                                                //            success:function(data){  
+                                                //            dataType: "json",
+                                                //            success:function(data){
                                                 //             $('#stud-res').html(data.output);
 
                                                 //            }
-                                                //       }); 
+                                                //       });
 
                                                 //    });
                                             });
@@ -298,6 +302,12 @@ if (isset($_SESSION['uname'])) {
     </body>
 
     </html>
+<?php
+    } else {
+        echo '<script>window.location.href = "pageError.html";</script>';
+    }
+?>
+
 <?php
 
 } else {

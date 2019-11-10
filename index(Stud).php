@@ -4,6 +4,11 @@ session_start();
 include "connect.php";
 
 ?>
+<?php
+
+if($_SESSION['desig']=='student'){
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,8 +107,8 @@ include "connect.php";
                         <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i
                                 class="icon feather icon-bell"></i></a>
                         <div class="dropdown-menu dropdown-menu-right notification drop-noti">
-                        
-                           
+
+
                         </div>
                     </div>
                 </li>
@@ -335,6 +340,9 @@ include "connect.php";
 
 </html>
 <?php
-
+}
+else{
+    echo '<script>window.location.href = "pageError.html";</script>';
+}
 
 ?>
