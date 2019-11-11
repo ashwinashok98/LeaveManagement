@@ -38,7 +38,7 @@ if (mysqli_num_rows($result) > 0) {
             $output .= ' <td> <i class="fa fa-times fa-2x" aria-hidden="true" style="color:red">';
         }
         if ($row['leaveStatus'] == 0) {
-            $output .= ' <td> <i class="fa fa-spinner fa-2x" aria-hidden="true" style="color:#E2D02A">';
+            $output .= ' <td> <i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true" style="color:#E2D02A">';
         }
 
         $output .= '</td>
