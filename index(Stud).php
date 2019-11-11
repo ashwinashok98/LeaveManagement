@@ -9,6 +9,33 @@ include "connect.php";
 
 <head>
 
+    <!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description"
+        content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
+    <meta name="keywords"
+        content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template" />
+    <meta name="author" content="CodedThemes" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<head>
+
 
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -44,61 +71,72 @@ include "connect.php";
 </script> -->
 
 <body>
+ <!-- [ Header ] start -->
+ <header class="navbar pcoded-header navbar-expand-lg navbar-light">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+            <a href="index.html" class="b-brand">
+                <div class="b-bg">
+                    <i class="feather icon-trending-up"></i>
+                </div>
+                <span class="b-title">Leave Manager</span>
+            </a>
+        </div>
+        <a class="mobile-menu" id="mobile-header" href="javascript:">
+            <i class="feather icon-more-horizontal"></i>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
+                            class="feather icon-maximize"></i></a></li>
+                <li class="nav-item dropdown">
+                    <a class="mb-1" href="logout.php">Logout</a>
 
+                </li>
 
-
-   <!-- [ Header ] start -->
-   <header class="navbar header navbar-expand-lg navbar-light">
-
-      <div class="navbar header navbar-expand-lg navbar-light navbar-collapse">
-         <ul class="navbar-nav mr-auto">
-            <li class="pdr-10"><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
-            <li class="nav-item dropdown">
-               <a class="mb-1" href="logout.php">Logout</a>
-            </li>
-
-         </ul>
-         <ul class="navbar-nav ml-auto">
-            <li class="pdr-10">
-               <div class="dropdown">
-                  <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
-                  <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-                  <div class="dropdown-menu dropdown-menu-right notification drop-noti">
-
-
-                  </div>
-               </div>
-            </li>
-            <li>
-               <div class="dropdown drp-user">
-                  <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                     <i class="icon feather icon-settings"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right profile-notification">
-                     <div class="pro-head">
-                        <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                        <span><?php echo ($_SESSION['uname']) ?></span>
-                        <a href="logout.php" class="dud-logout" title="Logout">
-                           <i class="feather icon-log-out"></i>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="dropdown">
+                    <span class="label label-pill label-danger count" style="border-radius:20px;"> </span>
+                        <a class="dropdown-toggle dropdown-toggle-noti" href="javascript:" data-toggle="dropdown"><i
+                                class="icon feather icon-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right notification drop-noti">
+                        
+                           
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown drp-user">
+                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon feather icon-settings"></i>
                         </a>
-                     </div>
-                     <ul class="pro-body">
-                        <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
-                              Settings</a></li>
-                        <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
-                              Profile</a></li>
-                        <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
-                              Messages</a></li>
-                        <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
-                              Lock Screen</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </li>
-         </ul>
-      </div>
-   </header>
-   <!-- [ Header ] end -->
+                        <div class="dropdown-menu dropdown-menu-right profile-notification">
+                            <div class="pro-head">
+                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span><?php echo($_SESSION['uname']) ?></span>
+                                <a href="logout.php" class="dud-logout" title="Logout">
+                                    <i class="feather icon-log-out"></i>
+                                </a>
+                            </div>
+                            <ul class="pro-body">
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
+                                        Settings</a></li>
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
+                                        Profile</a></li>
+                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
+                                        Messages</a></li>
+                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
+                                        Lock Screen</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
 
    <!-- [ Main Content ] start -->
    <div class="main-container mgl-10 mgr-10">

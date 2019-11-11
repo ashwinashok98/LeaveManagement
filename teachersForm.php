@@ -6,6 +6,9 @@ include("./connect.php");
     $fromdate =  strtotime($_POST['from']);
     $days = (abs($todate - $fromdate)/60/60/24);
 
+    $yes = date_create($_POST['from']);
+    $today=$yes;
+
     $output="";
     $output.="<input type ='text' id='day' name='day' value='".$days."' hidden>";
     $output.="
@@ -24,10 +27,10 @@ include("./connect.php");
 
            ";
             for ($i = 1; $i <= $days+1; $i++) {
-
+                $today= date_format($today,'d-m-Y');
                $output.=' <tr>
                     <td>
-                        day'.$i.'
+                        '.$today.'
                     </td>
                     ';
                     for ($j = 1; $j <= 7; $j++) {
@@ -59,6 +62,8 @@ include("./connect.php");
                     </td>
                ';
                     }
+                    $today=$yes;
+                    date_add($today,date_interval_create_from_date_string("1 days"));
                     $output.=" </tr>";
 
 

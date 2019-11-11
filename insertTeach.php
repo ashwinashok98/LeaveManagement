@@ -17,19 +17,19 @@ if(isset($_SESSION['uname']))
             $flag="incharge";
             $incharge = $_POST["incharge"];
                 $query = "
-                INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus)
-                VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','$incharge',1)";
+                INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus,notification_status)
+                VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','$incharge',1,4)";
                 mysqli_query($connect, $query);
         }
         else{
             $flag="table";
 
             $query = "
-            INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus)
-            VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','D_faculty',1)";
+            INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus,notification_status)
+            VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','D_faculty',1,4)";
             mysqli_query($connect, $query);
 
-            $get_ApplicationId_query = "select application_id from leaveapplication WHERE subjectOfLeave='$subject' and reason='$reason'";
+            $get_ApplicationId_query = "select application_id from leaveapplication WHERE subjectOfLeave='$subject' and reason='$reason' and fromDate='$fromDate' and toDate='$toDate'";
             $application_Id = mysqli_query($connect, $get_ApplicationId_query);
 
             if (mysqli_num_rows($application_Id) > 0) {

@@ -6,7 +6,7 @@ include "./connect.php";
 
 $output = '';
 
-$query = "SELECT * FROM User where user_id = '" . $id . "' and designation  = '" . $desig . "' ";
+$query = "SELECT * FROM User where user_id = '".$id."' and designation  = '".$desig."' ";
 $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0) {
   $row = mysqli_fetch_assoc($result);

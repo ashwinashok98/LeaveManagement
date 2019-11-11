@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (isset($_SESSION['uname'])) {
     $uid = $_SESSION['uid'];
@@ -33,9 +34,9 @@ if (isset($_SESSION['uname'])) {
 
 
         <!-- [ Header ] start -->
-        <header class="navbar header navbar-expand-lg navbar-light">
+        <header class="navbar  pcoded-header navbar-expand-lg navbar-light" style="margin-left:0px;width: calc(100% - 0px)">
 
-            <div class="navbar header navbar-expand-lg navbar-light navbar-collapse">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="pdr-10"><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
                     <li class="nav-item dropdown">
@@ -67,16 +68,7 @@ if (isset($_SESSION['uname'])) {
                                         <i class="feather icon-log-out"></i>
                                     </a>
                                 </div>
-                                <ul class="pro-body">
-                                    <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
-                                            Settings</a></li>
-                                    <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
-                                            Profile</a></li>
-                                    <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
-                                            Messages</a></li>
-                                    <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i>
-                                            Lock Screen</a></li>
-                                </ul>
+
                             </div>
                         </div>
                     </li>
@@ -99,45 +91,45 @@ if (isset($_SESSION['uname'])) {
                                 <div class="row mgl-10">
 
 
-                                <div class="col-xl-8 col-md-6">
-                           <div class="card Recent-Users">
-                              <div class="card-header">
-                                 <h5>Recent Leave Requests</h5>
-                              </div>
-                              <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
-                                 <div class="bs-example">
-                                    <ul id="myTab" class="nav nav-tabs">
-                                       <li class="nav-item">
-                                          <a href="#s_req" class="nav-link active" data-toggle="tab">Student Requests</a>
-                                       </li>
-                                       <li class="nav-item">
-                                          <a href="#t_req" class="nav-link" data-toggle="tab">Your Requests</a>
-                                       </li>
+                                    <div class="col-xl-8 col-md-6">
+                                        <div class="card Recent-Users">
+                                            <div class="card-header">
+                                                <h5>Recent Leave Requests</h5>
+                                            </div>
+                                            <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
+                                                <div class="bs-example">
+                                                    <ul id="myTab" class="nav nav-tabs">
+                                                        <li class="nav-item">
+                                                            <a href="#s_req" class="nav-link active" data-toggle="tab">Student Requests</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#t_req" class="nav-link" data-toggle="tab">Your Requests</a>
+                                                        </li>
 
-                                    </ul>
-                                    <div class="tab-content">
-                                       <div class="tab-pane fade show active" id="s_req">
-                                          <div class="table-responsive">
-                                             <table class="table table-hover" id="res1">
-                                                <!--[Ajax call for Recent Users ] -->
-                                             </table>
-                                          </div>
-                                       </div>
-                                       <div class="tab-pane fade" id="t_req">
-                                          <div class="table-responsive">
-                                             <table class="table table-hover" id="res2">
-                                                <!--[Ajax call for Recent Users ] -->
-                                             </table>
-                                          </div>
-                                       </div>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="s_req">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover" id="res1">
+                                                                    <!--[Ajax call for Recent Users ] -->
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="t_req">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover" id="res2">
+                                                                    <!--[Ajax call for Recent Users ] -->
+                                                                </table>
+                                                            </div>
+                                                        </div>
 
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
-
-                                 </div>
-
-                              </div>
-                           </div>
-                        </div>
                                     <!--[ Recent Users ] end-->
 
                                     <!-- [ statistics year chart ] start -->
@@ -188,12 +180,12 @@ if (isset($_SESSION['uname'])) {
                                                 <h5>LEAVE FORM</h5>
                                             </div>
                                             <form method="post" id="leave_form" action="insertTeach.php">
-                                            <div class="card-block px-0 py-3">
-                                                <div class="table-responsive">
-                                                    <div class="card-body">
+                                                <div class="card-block px-0 py-3">
+                                                    <div class="table-responsive">
+                                                        <div class="card-body">
 
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
 
                                                                     <div class="form-group">
                                                                         <label>Subject</label>
@@ -258,45 +250,66 @@ if (isset($_SESSION['uname'])) {
 
 
 
-                                                            </div>
-                                                            <div class="col-lg-6">
-
-
-
-                                                                <div class="form-group">
-                                                                    <label for="reason">Reason for absence</label>
-                                                                    <textarea class="form-control" name="reason" id="reason" rows="9" required></textarea>
                                                                 </div>
+                                                                <div class="col-lg-6">
 
 
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="form-group" id="hid_d_incharge" style="display:none">
-                                                                    <div id="table-res"></div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="reason">Reason for absence</label>
+                                                                        <textarea class="form-control" name="reason" id="reason" rows="9" required></textarea>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="col-lg-8">
+                                                                    <div class="form-group" id="hid_d_incharge" style="display:none">
+                                                                        <div id="table-res"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <input type="submit" class="btn btn-primary" value="Submit" name="post" id="post">
+                                                                       
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-6">
-                                                                <input type="submit" class="btn btn-primary" value="Submit" name="post" id="post">
 
-                                                            </div>
+
+
                                                         </div>
 
-
+                                                        </table>
 
                                                     </div>
-
-                                                    </table>
-
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
                                         </div>
 
                                     </div>
 
 
                                     <!-- [ Main Content ] end -->
-                                   
+                                    <!-- Modal info -->
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog modal-lg" style="width:90%">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h4 class="modal-title">Details</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                </div>
+                                                <div class="modal-body detailRes" id="detailRes">
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -310,7 +323,36 @@ if (isset($_SESSION['uname'])) {
         <script src="assets/js/vendor-all.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/pcoded.min.js"></script>
+
         <script>
+            function detail_show(clicked_id)
+            {
+                call_incharge(clicked_id);
+            }
+            function call_incharge(clicked_id)
+            {
+               
+                    var t = clicked_id;
+                    
+                    alert(t);
+                     $.ajax({
+                         url: "showincharge.php",
+                         method: "POST",
+                         data: {
+                             id: t
+                         },
+                         dataType: "json",
+                         success: function(data) {
+                             var out = data.output;
+                            
+                             
+                             $('#detailRes').html(data.output);
+
+
+                         }
+                     });
+            }
+            
             function sendDate() {
 
                 if ($("#fromDate").val() == "") {
@@ -367,6 +409,63 @@ if (isset($_SESSION['uname'])) {
             });
 
             $(document).ready(function() {
+                /* var str2DOMElement = function(html) {
+                     var frame = document.createElement('iframe');
+                     frame.style.display = 'none';
+                     document.body.appendChild(frame);
+                     frame.contentDocument.open();
+                     frame.contentDocument.write(html);
+                     frame.contentDocument.close();
+                     var el = frame.contentDocument.body.firstChild;
+                     document.body.removeChild(frame);
+                     return el;
+                 }
+                 
+
+
+
+                 $('.sweet-basic').on('click', function() {
+                     var view = '';
+                     $.ajax({
+                         url: "fetch.php",
+                         method: "POST",
+                         data: {
+                             view: view
+                         },
+                         dataType: "json",
+                         success: function(data) {
+                             var out = data.notification;
+
+                             // var markup = '<div class="card-block table-border-style"><div class="table-responsive"><table class="table table-hover"><thead>     <tr>           <th>#</th>  <th>First Name</th>    <th>Last Name</th>      <th>Username</th></tr> </thead> <tbody>  <tr>  <th scope="row">1</th>          <td>Mark</td>       <td>Otto</td>       <td>@mdo</td>      </tr> </tbody>  </table>  </div>  </div>';
+                             // var el = str2DOMElement(markup);
+
+                             swal(str2DOMElement(out));
+
+
+                         }
+                     });
+                 });*/
+                 $('.info-dis').on('click', function() {
+                    var t = $(this).attr('id');
+                    
+                    alert(t);
+                     $.ajax({
+                         url: "showincharge.php",
+                         method: "POST",
+                         data: {
+                             id: t
+                         },
+                         dataType: "json",
+                         success: function(data) {
+                             var out = data.output;
+                            
+                             
+                             $('#detailRes').html("hello");
+
+
+                         }
+                     });
+                 });
 
                 function load_unseen_notification(view = '') {
                     $.ajax({
@@ -433,7 +532,7 @@ if (isset($_SESSION['uname'])) {
                     load_unseen_notification();
                     check_requests();
 
-                }, 5000);
+                }, 20000);
 
 
                 $(document).on('click', '.leave-button', function() {

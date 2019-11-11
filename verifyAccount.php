@@ -28,9 +28,13 @@ if(mysqli_num_rows($result) > 0)
     $_SESSION['uname'] =$urow['name'];
     $_SESSION['uid']=$urow['user_id'];
     $_SESSION['desig']=$urow['designation'];
-    if($urow['designation']=="faculty" || $urow['designation']=="hod")
+    if($urow['designation']=="faculty")
     {
       echo '<script>window.location.href = "./index.php";</script>';
+    }
+    if( $urow['designation']=="hod")
+    {
+      echo '<script>window.location.href = "./indexH.php";</script>';
     }
     else
     {

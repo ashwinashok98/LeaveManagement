@@ -21,10 +21,7 @@ if(isset($_SESSION['uname']) )
     $output = '
     <div class="noti-head">
                                 <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                <div class="float-right">
-                                    <a href="javascript:" class="m-r-10">mark as read</a>
-                                    <a href="javascript:">clear all</a>
-                                </div>
+                                
                             </div>';
 
     if(mysqli_num_rows($result) > 0)
