@@ -37,7 +37,7 @@ if($_SESSION['desig']=='faculty'){
 
 
         <!-- [ Header ] start -->
-        <header class="navbar  pcoded-header navbar-expand-lg navbar-light" style="margin-left:0px;width: calc(100% - 0px)">
+        <header class="navbar  pcoded-header navbar-expand-lg navbar-light header-lightblue mgd-10" style="margin-left:0px;width: calc(100% - 0px)">
 
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
@@ -592,7 +592,7 @@ if($_SESSION['desig']=='faculty'){
     </html>
     <?php
         } else {
-            echo '<script>window.location.href = "pageError.html";</script>';
+            echo '<script>window.location.href = "404.html";</script>';
         }
     ?>
 <?php

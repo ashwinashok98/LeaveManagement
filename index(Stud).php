@@ -342,7 +342,7 @@ if($_SESSION['desig']=='student'){
 <?php
 }
 else{
-    echo '<script>window.location.href = "pageError.html";</script>';
+    echo '<script>window.location.href = "404.html";</script>';
 }
 
 ?>

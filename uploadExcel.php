@@ -22,6 +22,7 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                          
                                          <th>Email</th>  
                                          <th>Department</th> 
+                                         <th>Join Date</th> 
 														
 										 </tr> ';
                     
@@ -45,7 +46,8 @@ if (!empty($_FILES["teacher_excel_file"])) {
 													<th>Name</th>  
                                                     
                                                     <th>Email</th>  
-                                                    <th>Department</th> 
+                                                    <th>Department</th>
+                                                    <th>Join Date</th> 
 														
 										 </tr>  
 										 ";  
@@ -60,9 +62,10 @@ if (!empty($_FILES["teacher_excel_file"])) {
 										 $Fname = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());  
 										
 										 $Email= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue()); 
-										 $Dep= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue()); 
+                                         $Dep= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue()); 
+                                         $Join= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue());
 
-                                        if($Fname!='' && $Fid!='' &&  $Email!='' &&  $Dep!='')
+                                        if($Fname!='' && $Fid!='' &&  $Email!='' &&  $Dep!='' &&  $Join!='')
                                         {
                                             /*if ($stmt = $connect->prepare('SELECT * FROM user WHERE Fid = ?')) 
                                             {
@@ -82,9 +85,9 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                         
                                                 //else
                                                 
-                                                    $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department) VALUES (?, ?, ?, ?, ?)");
+                                                    $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department,joinDate) VALUES (?, ?, ?, ?, ?,?)");
                                                     
-                                                    $stmt2->bind_param('sssss', $Fid,$Fname,$designation,$Email,$Dep);
+                                                    $stmt2->bind_param('ssssss', $Fid,$Fname,$designation,$Email,$Dep,$Join);
                                                     $stmt2->execute();
                                                     
                                             //}
@@ -94,7 +97,8 @@ if (!empty($_FILES["teacher_excel_file"])) {
 													<td>'.$Fname.'</td>  
 													 
 													<td>'.$Email.'</td>  
-													<td>'.$Dep.'</td>  	
+                                                    <td>'.$Dep.'</td>  
+                                                    <td>'.$Join.'</td>	
 										 </tr>  
 										 ';
                                          
@@ -108,7 +112,8 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                                         <td>'.$Fname.'</td>  
                                                         
                                                         <td>'.$Email.'</td>  
-                                                        <td>'.$Dep.'</td>  		
+                                                        <td>'.$Dep.'</td> 
+                                                        <td>'.$Join.'</td>  		
                                                     </tr>  
                                                     ';  
 

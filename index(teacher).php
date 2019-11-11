@@ -84,7 +84,7 @@ if($_SESSION['desig']=='faculty' || $_SESSION['desig']=='hod'){
 
 }
 else {
-    echo '<script>window.location.href = "pageError.html";</script>';
+    echo '<script>window.location.href = "404r.html";</script>';
 }
 ?>
 <?php
