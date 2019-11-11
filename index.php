@@ -155,7 +155,7 @@ if (isset($_SESSION['uname'])) {
                                                         <i class="feather icon-zap f-30 text-c-green"></i>
                                                     </div>
                                                     <div class="col">
-                                                        <h3 class="f-w-300">23</h3>
+                                                        <h3 class="f-w-300">1</h3>
                                                         <span class="d-block text-uppercase">LEAVES TAKEN</span>
                                                     </div>
                                                 </div>
@@ -166,7 +166,7 @@ if (isset($_SESSION['uname'])) {
                                                         <i class="feather icon-zap f-30 text-c-green"></i>
                                                     </div>
                                                     <div class="col">
-                                                        <h3 class="f-w-300">30</h3>
+                                                        <h3 class="f-w-300">11</h3>
                                                         <span class="d-block text-uppercase">LEAVES LEFT</span>
                                                     </div>
                                                 </div>
@@ -235,7 +235,7 @@ if (isset($_SESSION['uname'])) {
                                                                                     if (mysqli_num_rows($teachers_result) > 0) {
                                                                                         while ($teacher = mysqli_fetch_array($teachers_result)) {
                                                                                             ?>
-                                                                                        <option value=<?php echo $teacher['name']; ?>><?php echo $teacher['name']; ?></option>
+                                                                                        <option value="<?php echo $teacher['name']; ?>"><?php echo $teacher['name']; ?></option>
                                                                                 <?php
                                                                                         }
                                                                                     }
@@ -334,7 +334,7 @@ if (isset($_SESSION['uname'])) {
                
                     var t = clicked_id;
                     
-                    alert(t);
+                    
                      $.ajax({
                          url: "showincharge.php",
                          method: "POST",
@@ -360,7 +360,7 @@ if (isset($_SESSION['uname'])) {
                     return;
                 }
                 var fromdate = $('#fromDate').val();
-                var todate = $('#toDate').val();
+                var todate = $('#toDate').val(); 
 
                 $.ajax({
                     url: "teachersForm.php",

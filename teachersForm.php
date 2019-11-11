@@ -43,7 +43,7 @@ include("./connect.php");
                         if (mysqli_num_rows($teachers_result) > 0) {
                             while ($teacher = mysqli_fetch_array($teachers_result)) {
 
-                        $output.='<option  value='.$teacher["name"].'> '.$teacher["name"].'</option>';
+                        $output.='<option  value="'.$teacher["name"].'"> '.$teacher["name"].'</option>';
                             }
                         }
                         $output.='

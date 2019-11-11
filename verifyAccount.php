@@ -36,6 +36,10 @@ if(mysqli_num_rows($result) > 0)
     {
       echo '<script>window.location.href = "./indexH.php";</script>';
     }
+    if( $urow['designation']=="admin")
+    {
+      echo '<script>window.location.href = "./indexAdmin.php";</script>';
+    }
     else
     {
       echo '<script>window.location.href = "./indexStud.php";</script>';

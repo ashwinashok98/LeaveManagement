@@ -11,11 +11,13 @@ if(isset($_SESSION['uname']))
         $toDate =  $_POST["toDate"];
         $days = (abs(strtotime($toDate) - strtotime($fromDate))/60/60/24);
         $flag="";
+        $today=$fromDate;
 
         if(isset($_POST["incharge"]))
         {
             $flag="incharge";
             $incharge = $_POST["incharge"];
+            
                 $query = "
                 INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus,notification_status)
                 VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','$incharge',1,4)";
@@ -64,10 +66,11 @@ if(isset($_SESSION['uname']))
                 $p7 = $p7."-".$s7;
 
                 $insert_details_query = "insert into managefaculty
-                VALUES($got_id,$d,'$p1','$p2','$p3','$p4','$p5','$p6','$p7')";
+                VALUES($got_id,'$today','$p1','$p2','$p3','$p4','$p5','$p6','$p7')";
                 if(mysqli_query($connect, $insert_details_query)){
-                    echo "<script>alert('insert success');</script>";
+                    echo "<script>alert('Insert success');</script>";
                 }
+                $today=date('Y-m-d',strtotime($today.' + 1 days'));
 
             }
         }

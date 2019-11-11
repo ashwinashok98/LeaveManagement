@@ -50,39 +50,102 @@ if (mysqli_num_rows($result) > 0) {
         </div>';
     } else 
     {
+        $output .= '<div class="card-block table-border-style">
+        <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                       <tr>
+                           <th>Leave ID</th>
+                           <th>DATE </th>
+                           <th class>08.45 to 09.35</th>
+                           <th class>09.35 to 10.25</th>
+                           <th class>10.40 to 11.30</th>
+                           <th class>11.30 to 12.20</th>
+                           <th class>12.20 to 1.10</th>
+                           <th class>01.50 to 02.40</th>
+                           <th class>02.40 to 03.30</th>
+                           
+                       </tr>
+                   </thead>
+                   <tbody>';
         $query1 = "SELECT * FROM managefaculty where application_id = '" . $id . "' ";
         $result1 = mysqli_query($connect, $query1);
         while ($row = mysqli_fetch_array($result1)) {
 
-            $output .= '<div class="card-block table-border-style">
-                         <div class="table-responsive">
-                                 <table class="table table-hover">
-                                     <thead>
+            $output .= '
                                         <tr>
-                                            <th>Leave ID</th>
-                                            <th>DATE </th>
-                                            <th class>08.45 to 09.35</th>
-                                            <th class>09.35 to 10.25</th>
-                                            <th class>10.40 to 11.30</th>
-                                            <th class>11.30 to 12.20</th>
-                                            <th class>12.20 to 1.10</th>
-                                            <th class>01.50 to 02.40</th>
-                                            <th class>02.40 to 03.30</th>
+                                            <th scope="row" >' . $row['application_id'] . '</th>
+                                            <td>' . $row['date'] . '</td>';
                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">' . $row['application_id'] . '</th>
-                                            <td>' . $row['day'] . '</td>
-                                            <td>' . $row['period1'] . '</td>
-                                            <td>' . $row['period2'] . '</td>
-                                            <td>' . $row['period3'] . '</td>
-                                            <td>' . $row['period4'] . '</td>
-                                            <td>' . $row['period5'] . '</td>
-                                            <td>' . $row['period6'] . '</td>
-                                            <td>' . $row['period7'] . '</td></tr>';
+                                            $null=substr($row['period1'],0,5);
+                                            $sem=substr($row['period1'],5);
+                                            
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period1'] . '</td>';
+                                            }
+
+                                            $null=substr($row['period2'],0,5);
+                                            $sem=substr($row['period2'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period2'] . '</td>';
+                                            }
+                                            $null=substr($row['period3'],0,5);
+                                            $sem=substr($row['period3'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period3'] . '</td>';
+                                            }
+                                            $null=substr($row['period4'],0,5);
+                                            $sem=substr($row['period4'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period4'] . '</td>';
+                                            }
+                                            $null=substr($row['period5'],0,5);
+                                            $sem=substr($row['period5'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period5'] . '</td>';
+                                            }
+                                            $null=substr($row['period6'],0,5);
+                                            $sem=substr($row['period6'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period6'] . '</td>';
+                                            }
+                                            $null=substr($row['period7'],0,5);
+                                            $sem=substr($row['period7'],5);
+                                            if($null=='NULL' || $sem=='0')
+                                            {
+                                                $output.='<td>---</td>';
+                                            }
+                                            else{
+                                                $output.= '<td>' . $row['period7'] . '</td>';
+                                            }
+
+                                           $output.='</tr>';
         }
+       
         $output .= '</td>
                     </tr>
                             

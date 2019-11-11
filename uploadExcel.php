@@ -1,6 +1,6 @@
 <?php
   include("./connect.php");
-  echo("in");
+
   
   if (!empty($_FILES["student_excel_file"])) { 
     $file=$_FILES["student_excel_file"];
@@ -13,11 +13,7 @@ if (!empty($_FILES["teacher_excel_file"])) {
         $output = ''; 
         $flag=0;
         $errout='';
-        $errout='<div class="container">
-                     <div class="row">
-                         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                             <div class="card card-signin my-5">
-                                 <div class="card-body">
+        $errout='
                     <label class="text-danger">Incomplete Data</label>  
 								<table class="table table-bordered">  
 										 <tr>  
