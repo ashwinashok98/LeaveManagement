@@ -158,7 +158,17 @@ if($_SESSION['desig']=='faculty'){
                                                         <i class="feather icon-zap f-30 text-c-green"></i>
                                                     </div>
                                                     <div class="col">
-                                                        <h3 class="f-w-300">1</h3>
+                                                        <h3 class="f-w-300">
+                                                            <?php
+                                                                $getLeaveTaken_query = "SELECT LeaveTaken FROM user WHERE user_id='$uid'";
+                                                                $getLeaveTaken_result = mysqli_query($connect, $getLeaveTaken_query);
+                                                                if (mysqli_num_rows($getLeaveTaken_result) > 0) {
+                                                                    while ($LeaveTaken_row = mysqli_fetch_array($getLeaveTaken_result)) {
+                                                                            echo $LeaveTaken_row['LeaveTaken'];
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </h3>
                                                         <span class="d-block text-uppercase">LEAVES TAKEN</span>
                                                     </div>
                                                 </div>
@@ -169,7 +179,17 @@ if($_SESSION['desig']=='faculty'){
                                                         <i class="feather icon-zap f-30 text-c-green"></i>
                                                     </div>
                                                     <div class="col">
-                                                        <h3 class="f-w-300">11</h3>
+                                                        <h3 class="f-w-300">
+                                                            <?php
+                                                                $getLeaveTaken_query = "SELECT balanceLeave FROM user WHERE user_id='16bt6cs013'";
+                                                                $getLeaveTaken_result = mysqli_query($connect, $getLeaveTaken_query);
+                                                                if (mysqli_num_rows($getLeaveTaken_result) > 0) {
+                                                                    while ($LeaveTaken_row = mysqli_fetch_array($getLeaveTaken_result)) {
+                                                                    echo $LeaveTaken_row['balanceLeave'];
+                                                                        }
+                                                                }
+                                                            ?>
+                                                        </h3>
                                                         <span class="d-block text-uppercase">LEAVES LEFT</span>
                                                     </div>
                                                 </div>
