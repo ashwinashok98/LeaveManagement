@@ -77,7 +77,7 @@ if($_SESSION['desig']=='admin' ){
         <!-- [ Header ] end -->
 
 
-        <div class="main-container">
+        <div class="main-container mgt-10">
             <div class="wrapper">
                 <div class="pcoded-content">
                     <div class="inner-content">

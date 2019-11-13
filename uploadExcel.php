@@ -15,13 +15,14 @@ if (!empty($_FILES["teacher_excel_file"])) {
         $errout='';
         $errout='
                     <label class="text-danger">Incomplete Data</label>  
-								<table class="table table-bordered">  
+								<table class="table table-bordered table-responsive ">  
 										 <tr>  
                                          <th>User ID</th>  
                                          <th>Name</th>  
                                          
                                          <th>Email</th>  
                                          <th>Department</th> 
+                                         <th>Mobile</th>
                                          <th>Join Date</th> 
 														
 										 </tr> ';
@@ -40,13 +41,14 @@ if (!empty($_FILES["teacher_excel_file"])) {
 					 
 					 $output .= "  
 					 <label class='text-success'>Data Updated</label>  
-								<table class='table table-bordered'>  
+								<table class='table table-bordered table-responsive'>  
 										 <tr>  
 													<th>User ID</th>  
 													<th>Name</th>  
                                                     
                                                     <th>Email</th>  
                                                     <th>Department</th>
+                                                    <th>Mobile</th>
                                                     <th>Join Date</th> 
 														
 										 </tr>  
@@ -63,9 +65,10 @@ if (!empty($_FILES["teacher_excel_file"])) {
 										
 										 $Email= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue()); 
                                          $Dep= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue()); 
-                                         $Join= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue());
+                                         $Mob= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue()); 
+                                         $Join= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(5, $row)->getValue());
 
-                                        if($Fname!='' && $Fid!='' &&  $Email!='' &&  $Dep!='' &&  $Join!='')
+                                        if($Fname!='' && $Fid!='' &&  $Email!='' &&  $Dep!='' &&  strlen($Mob)==10 &&   $Join!='')
                                         {
                                             /*if ($stmt = $connect->prepare('SELECT * FROM user WHERE Fid = ?')) 
                                             {
@@ -85,9 +88,9 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                         
                                                 //else
                                                 
-                                                    $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department,joinDate) VALUES (?, ?, ?, ?, ?,?)");
+                                                    $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department,mobile,joinDate) VALUES (?, ?, ?, ?, ?,?,?)");
                                                     
-                                                    $stmt2->bind_param('ssssss', $Fid,$Fname,$designation,$Email,$Dep,$Join);
+                                                    $stmt2->bind_param('sssssis', $Fid,$Fname,$designation,$Email,$Dep,$Mob,$Join);
                                                     $stmt2->execute();
                                                     
                                             //}
@@ -98,6 +101,7 @@ if (!empty($_FILES["teacher_excel_file"])) {
 													 
 													<td>'.$Email.'</td>  
                                                     <td>'.$Dep.'</td>  
+                                                    <td>'.$Mob.'</td>  
                                                     <td>'.$Join.'</td>	
 										 </tr>  
 										 ';
@@ -113,6 +117,7 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                                         
                                                         <td>'.$Email.'</td>  
                                                         <td>'.$Dep.'</td> 
+                                                        <td>'.$Mob.'</td> 
                                                         <td>'.$Join.'</td>  		
                                                     </tr>  
                                                     ';  

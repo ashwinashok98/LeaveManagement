@@ -28,6 +28,11 @@ if (mysqli_num_rows($result) > 0) {
 
                 </tr>
                 <tr>
+                  <td><b>Mobile</b></td>
+                  <td><input type="text" class="form-control" id="mobile" name="mobile" value="' . $row['mobile'] . '" required></td>
+
+                </tr>
+                <tr>
                   <td><b>Department</b></td>
                   <td><input type="text" class="form-control" id="dep" name="dep" value="' . $row['department'] . '"required ></td>
 

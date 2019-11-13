@@ -89,7 +89,7 @@ if($_SESSION['desig']=='hod'){
         <!-- [ Header ] end -->
 
         <!-- [ Main Content ] start -->
-        <div class="main-container mgl-10 mgr-10">
+        <div class="main-container mgt-10 mgl-10 mgr-10">
             <div class="wrapper mgl-10">
                 <div class="content">
                     <div class="inner-content">
