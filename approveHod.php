@@ -13,7 +13,7 @@ if(isset($_SESSION['uname']) )
         $id=substr($_POST['id'],3);
         if($state=="acp")
         {
-            $six=2;
+            $six=6;
             $one=1;
             $stmt = $connect->prepare( "UPDATE leaveapplication SET notification_status = ?, leaveStatus=?   WHERE application_id = ?");
             $stmt->bind_param("iii",$six,$one,$id);

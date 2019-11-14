@@ -535,7 +535,7 @@ if($_SESSION['desig']=='faculty'){
                     load_unseen_notification();
                     check_requests();
 
-                }, 20000);
+                }, 2000);
 
 
                 $(document).on('click', '.leave-button', function() {

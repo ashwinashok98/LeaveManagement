@@ -22,6 +22,7 @@ if(isset($_SESSION['uname']))
                 INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,typeLeave,inchargeFaculty,hodStatus,notification_status)
                 VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$leave_type','$incharge',1,4)";
                 mysqli_query($connect, $query);
+               
         }
         else{
             $flag="table";

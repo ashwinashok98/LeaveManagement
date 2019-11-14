@@ -10,10 +10,11 @@ if(isset($_SESSION['uname']))
         $toDate =  $_POST["toDate"];
         $name=$_POST["name"];
 
-        $query = "
-        INSERT INTO leaveapplication (user_id,fromDate,toDate,subjectOfLeave,reason,FacultyApproval)
-        VALUES ('$id', '$fromDate','$toDate','$subject','$reason','$name')";
-        mysqli_query($connect, $query);
+        $stmt2 = $connect->prepare("INSERT INTO leaveapplication(user_id,fromDate,toDate,subjectOfLeave,reason,FacultyApproval) VALUES (?,?,?,?,?,?)");
+        
+        $stmt2->bind_param('ssssss', $id, $fromDate,$toDate,$subject,$reason,$name);
+        $stmt2->execute();
+
         echo '<script>window.location.href = "./indexStud.php";</script>';
     
 }
