@@ -117,10 +117,13 @@
   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script src="./assets/js/pcoded.min.js"></script>
   <script src="./assets/js/menu-setting.min.js"></script>
+  
+  <script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>
+ 
 
   <script>
-   $('.sweet-basic').on('click', function() {
-        swal('Hello world!');
+   $('.close').on('click', function() {
+    swal("Good job!", "You clicked the button!", "warning");
     });
   </script>
 </body>

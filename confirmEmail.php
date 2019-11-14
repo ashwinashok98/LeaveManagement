@@ -93,9 +93,8 @@ if(isset($_POST['submit'])){
     ";
     if($mail->send()){
         
-        echo '<script language="javascript">';
-        echo 'alert("MAIL SENT")';
-        echo '</script>';
+        echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
+                echo" <script>swal('Mail Sent', '', 'success');</script>";
 
         $insert_query = "INSERT into resetpassword(email,token,token_expiry) values('$mail_address','$token',DATE_ADD(NOW(),INTERVAL 5 MINUTE))";
         if(mysqli_query($connect, $insert_query)){

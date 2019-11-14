@@ -69,7 +69,7 @@ if(isset($_SESSION['uname']))
                 $insert_details_query = "insert into managefaculty
                 VALUES($got_id,'$today','$p1','$p2','$p3','$p4','$p5','$p6','$p7')";
                 if(mysqli_query($connect, $insert_details_query)){
-                    echo "<script>alert('Insert success');</script>";
+                    
                 }
                 $today=date('Y-m-d',strtotime($today.' + 1 days'));
 

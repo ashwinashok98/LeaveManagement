@@ -84,7 +84,7 @@ if (isset($_SESSION['uname']))
                  <td>
 
            <h6 class="mb-1">' . $row["subjectOfLeave"] . '</h6>
-           <p class="m-0" style="max-width:500px;margin: auto;">' . $row["reason"] . '</p>
+           <p class="m-0" style="max-width:400px;margin: auto; word-wrap: break-word;white-space: initial" >' . $row["reason"] . '</p>
             </td>
              <td>
            <h6 class="text-muted"><i

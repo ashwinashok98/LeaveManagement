@@ -44,7 +44,8 @@ if(isset($_SESSION['uname']) )
             $message = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Approved by ".$uname.".\n \n Leave Taken:".$user_detail['LeaveTaken']."\n Leave Balance:".$user_detail['balanceLeave']." \nThankyou.";
             if(mail($user_detail['email'],$subject,$message))
             {
-                echo "<script>alert('mail sent');</script>";
+                echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
+                echo" <script>swal('Mail Sent', '', 'success');</script>";
             }
         }
         if($state=="rej")

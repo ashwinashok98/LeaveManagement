@@ -347,6 +347,8 @@ if($_SESSION['desig']=='faculty'){
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/pcoded.min.js"></script>
 
+        <script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>
+
         <script>
             function detail_show(clicked_id)
             {
@@ -379,12 +381,18 @@ if($_SESSION['desig']=='faculty'){
             function sendDate() {
 
                 if ($("#fromDate").val() == "") {
-                    alert("Fill From Date");
+                   
+                    swal("Fill From Date", "", "warning");
                     return;
+                    
                 }
                 var fromdate = $('#fromDate').val();
                 var todate = $('#toDate').val();
-
+                if(Date.parse(fromdate)>Date.parse(todate))
+                {
+                    swal("Invalid Date Range", "", "warning");
+                    return;
+                }
                 $.ajax({
                     url: "teachersForm.php",
                     method: "POST",

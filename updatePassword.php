@@ -8,8 +8,13 @@ include("connect.php");
         $token = $_POST["t"];
         if($pass1 !=$pass2)
         {
-            echo '<script language="javascript">';
-            echo 'alert("Password Does Not Match");';
+            
+            echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
+            echo '<script src="./assets/js/pages/ac-alert.js"></script>';
+            echo" <script>swal('Password does not match, try again!', '', 'error');</script>";
+            
+            echo '<script language="javascript"> alert("Password Does not match");';
+            
             echo 'window.history.back();';
             echo '</script>';
         }
@@ -27,7 +32,9 @@ include("connect.php");
                         $uid = $row['user_id'];
                         $update_password="UPDATE login set password='$pass1' where user_id='$uid'";
                         if(mysqli_query($connect, $update_password)){
-                            echo "<script>alert('Reset successfull');</script>";
+
+                            echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
+                            echo' <script>swal("Good job!", "You clicked the button!", "success");alert("Password Changed");</script>';
                             echo '<script>window.location.href = "login.html";</script>';
                         }
                     }

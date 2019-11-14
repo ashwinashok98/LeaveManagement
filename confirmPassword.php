@@ -85,7 +85,7 @@ if(mysqli_num_rows($rows)>0){
 <?php
 }
 else{
-    echo "<h3>link expired</h3><br><h4>try again.</h4>";
+    echo '<script>window.location.href = "404.html";</script>';
 }
 ?>
 <?php
