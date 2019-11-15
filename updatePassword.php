@@ -8,13 +8,13 @@ include("connect.php");
         $token = $_POST["t"];
         if($pass1 !=$pass2)
         {
-            
+
             echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
             echo '<script src="./assets/js/pages/ac-alert.js"></script>';
             echo" <script>swal('Password does not match, try again!', '', 'error');</script>";
-            
+
             echo '<script language="javascript"> alert("Password Does not match");';
-            
+
             echo 'window.history.back();';
             echo '</script>';
         }
@@ -36,14 +36,14 @@ include("connect.php");
 
                             echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
                             echo' <script>swal("Good job!", "You clicked the button!", "success");alert("Password Changed");</script>';
-                            /*echo '<script>window.location.href = "login.html";</script>';*/
+                            echo '<script>window.location.href = "login.html";</script>';
                         }
                     }
                 }else{
                     echo "Error in fetching user_id";
                 }
         }
-        
+
     }
     else{
         echo "<script>alert('wrong details entered');</script>";

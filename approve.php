@@ -1,16 +1,20 @@
 
 <?php
+use phpmailer\PHPMailer\PHPMailer;
+require_once "phpmailer/PHPMailer.php";
+require_once "phpmailer/Exception.php";
 session_start();
 if(isset($_SESSION['uname']) )
 {
   $uid=$_SESSION['uid'];
   $uname=$_SESSION['uname'];
-  
+
   include('connect.php');
   if(isset($_POST['id']))
   {
         $state=substr($_POST['id'],0,3);
         $id=substr($_POST['id'],3);
+
         if($state=="acp")
         {
             $two=2;
@@ -29,19 +33,24 @@ if(isset($_SESSION['uname']) )
             $update_leave_status= 'UPDATE user SET LeaveTaken = LeaveTaken+1 , balanceLeave=balanceLeave-1   WHERE user_id = $user_detail["user_id"] ';
             mysqli_query($connect,  $update_leave_status);
 
-           
 
-            
+            //mail fuction
+            $mail = new PHPMailer();
+            $mail->setFrom("nikhi013@gmail.com");
+            $mail_address=$user_detail['email'];
+            $mail->addAddress($mail_address);
+            $mail->isHTML(true);
+
             $leave_query= $connect->prepare("select * from leaveapplication where application_id = ? ");
             $leave_query->bind_param("i",$id);
             $leave_query->execute();
             $leave_sub = $leave_query->get_result();
             $leave_sub_res = $leave_sub->fetch_assoc();
 
-           
-            $subject="Regarding your leave application";
-            $message = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Approved by ".$uname.".\n \n Leave Taken:".$user_detail['LeaveTaken']."\n Leave Balance:".$user_detail['balanceLeave']." \nThankyou.";
-            if(mail($user_detail['email'],$subject,$message))
+
+            $mail->Subject="Regarding your leave application";
+            $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Approved by ".$uname.".<br><br> <b>Leave Taken:</b>".$user_detail['LeaveTaken']."<br> <b>Leave Balance:</b>".$user_detail['balanceLeave']." <br><br><br>Thankyou.";
+            if($mail->send())
             {
                 echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
                 echo" <script>swal('Mail Sent', '', 'success');</script>";
@@ -68,23 +77,30 @@ if(isset($_SESSION['uname']) )
             $leave_sub = $leave_query->get_result();
             $leave_sub_res = $leave_sub->fetch_assoc();//Get leave Application Details for leave id
 
-            $subject="Regarding your leave application";
-            $message = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Rejected by ".$uname.".\n \n Leave Taken:".$user_detail['LeaveTaken']."\n Leave Balance:".$user_detail['balanceLeave']." \nThankyou.";
-            if(mail($user_detail['email'],$subject,$message))
+            //mail fuction
+            $mail = new PHPMailer();
+            $mail->setFrom("nikhi013@gmail.com");
+            $mail_address=$user_detail['email'];
+            $mail->addAddress($mail_address);
+            $mail->isHTML(true);
+
+            $mail->Subject="Regarding your leave application";
+            $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Rejected by ".$uname.". <br><br> Leave Taken:".$user_detail['LeaveTaken']." <br>Leave Balance:".$user_detail['balanceLeave']." <br><br><br>Thankyou.";
+            if($mail->send())
             {
                 echo "<script>alert('mail sent');</script>";
             }
         }
-        
-        
-        
 
 
-       
+
+
+
+
     }
 }
-    
-    
 
-    
+
+
+
 ?>
