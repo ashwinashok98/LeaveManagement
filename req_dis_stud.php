@@ -9,6 +9,8 @@ if(isset($_SESSION['uname']) )
   
   include('connect.php');
 
+  
+    
     $output = '';
     $output.="<tbody>";
     $query = "SELECT * FROM leaveapplication where user_id = '".$_SESSION['uid']."' ORDER BY application_id DESC";
@@ -18,6 +20,14 @@ if(isset($_SESSION['uname']) )
     {
         while($row = mysqli_fetch_array($result))
         {
+            $orifrom=$row['fromDate'];
+            $orito=$row['toDate'];
+            $t_from = strtotime($orifrom);
+            $t_to = strtotime($orito);
+            $new_from = date("d-m-Y", $t_from);
+            $new_to = date("d-m-Y", $t_to);
+
+
                 $output.='<tr class="unread">
                      <td><img class="rounded-circle" style="width:40px;"
                     src="assets/images/user/avatar-1.jpg"
@@ -29,8 +39,8 @@ if(isset($_SESSION['uname']) )
             </td>
             <td>
                 <h6 class="text-muted"><i
-                            class="fas fa-circle text-c-green f-10 m-r-15"></i>'.$row["fromDate"].'</h6><h6 class="text-muted"><i
-                        class="fas fa-circle text-c-red f-10 m-r-15"></i>'.$row["toDate"].'</h6>
+                            class="fas fa-circle text-c-green f-10 m-r-15"></i>'. $new_from.'</h6><h6 class="text-muted"><i
+                        class="fas fa-circle text-c-red f-10 m-r-15"></i>'.$new_to.'</h6>
             </td>
             <td>';
                     if($row['leaveStatus']==1)

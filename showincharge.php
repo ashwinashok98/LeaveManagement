@@ -11,6 +11,12 @@ $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     if ($row['inchargeFaculty'] != 'D_faculty') {
+            $orifrom=$row['fromDate'];
+            $orito=$row['toDate'];
+            $t_from = strtotime($orifrom);
+            $t_to = strtotime($orito);
+            $new_from = date("d-m-Y", $t_from);
+            $new_to = date("d-m-Y", $t_to);
        
         $output .= '<div class="card-block table-border-style">
                          <div class="table-responsive">
@@ -28,8 +34,8 @@ if (mysqli_num_rows($result) > 0) {
                                     <tbody>
                                         <tr>
                                             <th scope="row">' . $row['application_id'] . '</th>
-                                            <td>' . $row['fromDate'] . '</td>
-                                            <td>' . $row['toDate'] . '</td>
+                                            <td>' .  $new_from . '</td>
+                                            <td>' .  $new_to . '</td>
                                             <td>' . $row['inchargeFaculty'] . '</td>';
         if ($row['leaveStatus'] == 1) {
             $output .= ' <td> <i class="fa fa-check fa-2x" aria-hidden="true" style="color:green"></i>';
