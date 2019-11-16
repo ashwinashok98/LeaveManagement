@@ -36,7 +36,7 @@ if(isset($_SESSION['uname']) )
 
             //mail fuction
             $mail = new PHPMailer();
-            $mail->setFrom("nikhi013@gmail.com");
+            $mail->setFrom("ashwinashok98@gmail.com");
             $mail_address=$user_detail['email'];
             $mail->addAddress($mail_address);
             $mail->isHTML(true);
@@ -79,7 +79,7 @@ if(isset($_SESSION['uname']) )
 
             //mail fuction
             $mail = new PHPMailer();
-            $mail->setFrom("nikhi013@gmail.com");
+            $mail->setFrom("ashwinashok98@gmail.com");
             $mail_address=$user_detail['email'];
             $mail->addAddress($mail_address);
             $mail->isHTML(true);

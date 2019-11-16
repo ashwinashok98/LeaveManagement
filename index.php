@@ -71,9 +71,10 @@ if($_SESSION['desig']=='faculty'){
                                         <i class="feather icon-log-out"></i>
                                     </a>
                                 </div>
-                                <ui>
-                                    yoyo
-                                </ui>
+                                <ul class="pro-body">
+                                <li><a href="./confirmEmail.php" class="dropdown-item"><i class="fa fa-key" aria-hidden="true"></i> Change Password</a></li>
+                                
+                            </ul>
 
                             </div>
                         </div>
