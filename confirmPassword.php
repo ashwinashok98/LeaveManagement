@@ -55,7 +55,7 @@ if(mysqli_num_rows($rows)>0){
                     <input type="hidden" name="email" value="<?php echo $email;?>">
                     <input type="hidden" name="t" value="<?php echo $token;?>">
 
-                    <h3 class="mb-4">Change Password</h3>
+                    <h3 class="mb-4">New Password</h3>
                     <div class="input-group mb-3">
                     <input type="password" name="pass1" class="form-control" placeholder="Password">
                     </div>

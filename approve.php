@@ -26,9 +26,8 @@ if(isset($_SESSION['uname']) )
             $Details = $getDetails->get_result();
             $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
 
-            $stmt = $connect->prepare( "UPDATE user SET LeaveTaken = LeaveTaken+?, balanceLeave=balanceLeave-?   WHERE user_id = ? ");
-            $stmt->bind_param("iis", $one,$one,$user_detail['user_id']);
-            $stmt->execute();//For updating leave taken value
+            $update_leave_status= 'UPDATE user SET LeaveTaken = LeaveTaken+1 , balanceLeave=balanceLeave-1   WHERE user_id = $user_detail["user_id"] ';
+            mysqli_query($connect,  $update_leave_status);
 
            
 

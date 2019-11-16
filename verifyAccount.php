@@ -16,10 +16,13 @@ $data = array();
 
 if(mysqli_num_rows($result) > 0)
 {
+  //$2y$10$VPdsbHC1XYkgp0.629QWq.Cu4.gzvcn6kuRLuxctTItkSXBa56eLq
   $row = mysqli_fetch_assoc($result);
+  if(password_verify($password, $row['password'])/*$password==$row['password']*/)
+  {
 
-  if ($password==$row['password']) {
-
+  
+  
     //password valid
     $uquery = "SELECT * FROM user where user_id = '".$uid."'" ;
     $uresult = mysqli_query($connect, $uquery);

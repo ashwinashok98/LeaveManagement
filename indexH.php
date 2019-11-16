@@ -134,31 +134,7 @@ if($_SESSION['desig']=='hod'){
                                                 <h6 class="text-muted mt-4 mb-0">9.00 p.m - Diwali Party </h6>
                                                 <i class="fab fa-angellist text-c-purple f-50"></i>
                                             </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-block border-bottom">
-                                                <div class="row d-flex align-items-center">
-                                                    <div class="col-auto">
-                                                        <i class="feather icon-zap f-30 text-c-green"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h3 class="f-w-300">23</h3>
-                                                        <span class="d-block text-uppercase">LEAVES TAKEN</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-block">
-                                                <div class="row d-flex align-items-center">
-                                                    <div class="col-auto">
-                                                        <i class="feather icon-zap f-30 text-c-green"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h3 class="f-w-300">30</h3>
-                                                        <span class="d-block text-uppercase">LEAVES LEFT</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="modal fade" id="myModal" role="dialog">
                                         <div class="modal-dialog modal-lg" style="width:90%">

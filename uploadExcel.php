@@ -1,6 +1,8 @@
 <?php
   include("./connect.php");
-
+  use phpmailer\PHPMailer\PHPMailer;
+  require_once "phpmailer/PHPMailer.php";
+  require_once "phpmailer/Exception.php";
   
   if (!empty($_FILES["student_excel_file"])) { 
     $file=$_FILES["student_excel_file"];
@@ -87,11 +89,31 @@ if (!empty($_FILES["teacher_excel_file"])) {
                                                 }*/
                                         
                                                 //else
-                                                
-                                                    $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department,mobile,joinDate) VALUES (?, ?, ?, ?, ?,?,?)");
+                                                $stmt2 = $connect->prepare("INSERT INTO user(user_id,name,designation,email,department,mobile,joinDate) VALUES (?, ?, ?, ?, ?,?,?)");
                                                     
-                                                    $stmt2->bind_param('sssssis', $Fid,$Fname,$designation,$Email,$Dep,$Mob,$Join);
-                                                    $stmt2->execute();
+                                                $stmt2->bind_param('sssssis', $Fid,$Fname,$designation,$Email,$Dep,$Mob,$Join);
+                                                $stmt2->execute();
+
+                                                
+
+                                                    $pwd = bin2hex(openssl_random_pseudo_bytes(4));
+                                                    $hash = password_hash($pwd,PASSWORD_DEFAULT);
+                                                    
+                                                    $stmtp = $connect->prepare("INSERT INTO login VALUES (?, ?)");
+                                                    $stmtp->bind_param('ss', $Fid,$hash);
+                                                    $stmtp->execute();
+
+                                                    $mail_address = $Email;
+                                                    $mail = new PHPMailer();
+                                                    $mail->setFrom("ashwinashok98@gmail.com");
+                                                    $mail->addAddress($mail_address);
+                                                    $mail->Subject = "Login Details";
+                                                    $mail->isHTML(true);
+                                                    $mail->Body =" <h4>Login Details for JGI Leave Manager: <br> Username:".$Fid." <br> Password:".$pwd."</h4>
+                                                    <b>Please do not share this information to anyone.</b>";
+                                                    $mail->send();
+                                                
+                                                   
                                                     
                                             //}
                                             $output .= '  

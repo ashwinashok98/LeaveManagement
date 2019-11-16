@@ -71,6 +71,9 @@ if($_SESSION['desig']=='faculty'){
                                         <i class="feather icon-log-out"></i>
                                     </a>
                                 </div>
+                                <ui>
+                                    yoyo
+                                </ui>
 
                             </div>
                         </div>
@@ -181,7 +184,7 @@ if($_SESSION['desig']=='faculty'){
                                                     <div class="col">
                                                         <h3 class="f-w-300">
                                                             <?php
-                                                                $getLeaveTaken_query = "SELECT balanceLeave FROM user WHERE user_id='16bt6cs013'";
+                                                                $getLeaveTaken_query = "SELECT balanceLeave FROM user WHERE user_id='$uid'";
                                                                 $getLeaveTaken_result = mysqli_query($connect, $getLeaveTaken_query);
                                                                 if (mysqli_num_rows($getLeaveTaken_result) > 0) {
                                                                     while ($LeaveTaken_row = mysqli_fetch_array($getLeaveTaken_result)) {

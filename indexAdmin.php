@@ -98,9 +98,10 @@ if($_SESSION['desig']=='admin' ){
                                                     <label class="btn btn-lg btn-primary btn-block text-uppercase">
                                                         Select Excel
                                                         <input type="file" name="student_excel_file" id="student_excel_file" style="display: none;">
+                                                        <td> <i class="fa fa-spinner fa-pulse fa-2x fa-fw load_stud" aria-hidden="true" style="color:#E2D02A;display:none;"></i></td>
                                                     </label>
                                                 </form>
-
+                                               
                                                     <div id="result_student_excel"></div>
 
 
@@ -116,6 +117,7 @@ if($_SESSION['desig']=='admin' ){
                                                     <label class="btn btn-lg btn-primary btn-block text-uppercase">
                                                         Select Excel
                                                         <input type="file" name="teacher_excel_file" id="teacher_excel_file" style="display: none;">
+                                                        <td> <i class="fa fa-spinner fa-pulse fa-2x fa-fw load_teach" aria-hidden="true" style="color:#E2D02A;display:none;"></i></td>
                                                     </label>
                                                 </form>
                                                 <div id="result_teacher_excel"></div>
@@ -210,7 +212,7 @@ if($_SESSION['desig']=='admin' ){
 
 
                                                 $('#export_teacher_excel').on('submit', function(event) {
-
+                                                    $('.load_teach').show();
                                                     event.preventDefault();
                                                     $.ajax({
                                                         url: "uploadExcel.php",
@@ -221,11 +223,12 @@ if($_SESSION['desig']=='admin' ){
                                                         success: function(data) {
                                                             $('#result_teacher_excel').html(data);
                                                             $('#teacher_excel_file').val('');
+                                                            $('.load_teach').hide();
                                                         }
                                                     });
                                                 });
                                                 $('#export_student_excel').on('submit', function(event) {
-
+                                                    $('.load_stud').show();
                                                     event.preventDefault();
                                                     $.ajax({
                                                         url: "uploadExcel.php",
@@ -236,6 +239,7 @@ if($_SESSION['desig']=='admin' ){
                                                         success: function(data) {
                                                             $('#result_student_excel').html(data);
                                                             $('#student_excel_file').val('');
+                                                            $('.load_stud').hide();
                                                         }
                                                     });
                                                 });
@@ -252,7 +256,7 @@ if($_SESSION['desig']=='admin' ){
                                                         dataType: "json",
                                                         success: function(data) {
                                                             $('#teach-res').html(data.output);
-                                                            alert("success")
+                                                            
 
 
                                                         }
