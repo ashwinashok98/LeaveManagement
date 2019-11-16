@@ -30,8 +30,8 @@ include("connect.php");
                 if(mysqli_num_rows($id)>0){
                     if($row = mysqli_fetch_array($id)){
                         $uid = $row['user_id'];
-                        /*$hash=password_hash($pass1,PASSWORD_DEFAULT);*/
-                        $update_password="UPDATE login set password='$pass1' where user_id='$uid'";
+                        $hash=password_hash($pass1,PASSWORD_DEFAULT);
+                        $update_password="UPDATE login set password='$hash' where user_id='$uid'";
                         if(mysqli_query($connect, $update_password)){
 
                             echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
