@@ -191,17 +191,54 @@ if($_SESSION['desig']=='admin' ){
 
 
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
 
 
 
                                         <!--[ Recent Users ] end-->
 
 
-                                        <
+                                        <footer class="bg-dark text-white mt-4" style="overflow-x:hidden;">
+    <div class="container-fluid py-3"style="overflow-x:hidden;background-color:#23B7E5">
+        <div class="row" >
+            <div class="col-md-3">
+                <h5 style="color:white">JGI LEAVE MANAGER</h5></div>
+            <div class="col-md-3">Contact Developer</div>
+            <div class="col-md-3">Social</div>
+            <div class="col-md-3"><a href="https://www.jainuniversity.ac.in/" style="color:white">https://www.jainuniversity.ac.in/</a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"><i class="fa fa-phone" aria-hidden="true"></i>+91 8660030006</div>
+            <div class="col-md-3"><span class="iconify" data-icon="fe-facebook" data-inline="false"></span>
+            
+            
+        
+            <span class="iconify" data-icon="simple-icons:instagram" data-inline="false"></span>
+            <span class="iconify" data-icon="fa:linkedin-square" data-inline="false"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><small>Developed by Ashwin.K.A Nikhil.L Bhargavi.S Karishma.K</small></div>
+            <div class="col-md-3"><i class="fa fa-envelope" aria-hidden="true"></i> ashwinashok98@gmail.com</div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3 text-right small align-self-end">©2019 JGI.</div>
+        </div>
+        
+    </div>
+</footer>
 
-                                        <!-- [ Main Content ] end -->
 
-                                        <!-- Required Js -->
+
+        <!-- Required Js -->
+        <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
                                         <script src="assets/js/vendor-all.min.js"></script>
                                         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
                                         <script src="assets/js/pcoded.min.js"></script>
