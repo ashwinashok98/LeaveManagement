@@ -14,84 +14,99 @@ if(isset($_SESSION['uname']) )
   {
         $state=substr($_POST['id'],0,3);
         $id=substr($_POST['id'],3);
-        if($state=="acp")
-        {
-            $six=6;
-            $one=1;
-            $stmt = $connect->prepare( "UPDATE leaveapplication SET notification_status = ?, leaveStatus=?   WHERE application_id = ?");
-            $stmt->bind_param("iii",$six,$one,$id);
-            $stmt->execute();//Updating leave status and notification status
 
-
-            $getDetails = $connect->prepare("select * from leaveapplication l , user u where l.user_id= u.user_id And application_id =?");
-            $getDetails->bind_param("i", $id);
-            $getDetails->execute();
-            $Details = $getDetails->get_result();
-            $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
-
-            //mail fuction
-            $mail = new PHPMailer();
-            $mail->setFrom("nikhi013@gmail.com");
-            $mail_address=$user_detail['email'];
-            $mail->addAddress($mail_address);
-            $mail->isHTML(true);
-
-            $update_leave_status= 'UPDATE user SET LeaveTaken = LeaveTaken+1 , balanceLeave=balanceLeave-1   WHERE user_id = $user_detail["user_id"] ';
-            mysqli_query($connect,  $update_leave_status);
-
-
-
-
-            $leave_query= $connect->prepare("select * from leaveapplication where application_id = ? ");
-            $leave_query->bind_param("i",$id);
-            $leave_query->execute();
-            $leave_sub = $leave_query->get_result();
-            $leave_sub_res = $leave_sub->fetch_assoc();
-
-
-            $mail->Subject="Regarding your leave application";
-            $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Approved by ".$uname.".<br><br> Leave Taken:".$user_detail['LeaveTaken']."<br>Leave Balance:".$user_detail['balanceLeave']." <br><br><br>Thankyou.";
-            if($mail->send())
+        $getDetails1 = $connect->prepare("select * from leaveapplication where application_id =?");
+            $getDetails1->bind_param("i", $id);
+            $getDetails1->execute();
+            $Details1 = $getDetails1->get_result();
+            $user_detail1 = $Details1->fetch_assoc();
+            if($user_detail1['leaveStatus']==0)
             {
-                echo "<script>alert('mail sent');</script>";
+                if($state=="acp")
+                {
+                    $six=6;
+                    $one=1;
+                    $stmt = $connect->prepare( "UPDATE leaveapplication SET notification_status = ?, leaveStatus=?   WHERE application_id = ?");
+                    $stmt->bind_param("iii",$six,$one,$id);
+                    $stmt->execute();//Updating leave status and notification status
+
+
+                    $getDetails = $connect->prepare("select * from leaveapplication l , user u where l.user_id= u.user_id And application_id =?");
+                    $getDetails->bind_param("i", $id);
+                    $getDetails->execute();
+                    $Details = $getDetails->get_result();
+                    $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
+
+                    //mail fuction
+                    $mail = new PHPMailer();
+                    $mail->setFrom("ashwinashok98@gmail.com");
+                    $mail_address=$user_detail['email'];
+                    $mail->addAddress($mail_address);
+                    $mail->isHTML(true);
+
+                    $update_leave_status= 'UPDATE user SET LeaveTaken = LeaveTaken+1 , balanceLeave=balanceLeave-1   WHERE user_id = '.$user_detail["user_id"].' ';
+                    mysqli_query($connect,  $update_leave_status);
+
+
+
+                    $leave_query= $connect->prepare("select * from leaveapplication where application_id = ? ");
+                    $leave_query->bind_param("i",$id);
+                    $leave_query->execute();
+                    $leave_sub = $leave_query->get_result();
+                    $leave_sub_res = $leave_sub->fetch_assoc();
+                    
+                    $getDetails = $connect->prepare("select * from leaveapplication l , user u where l.user_id= u.user_id And application_id =?");
+                    $getDetails->bind_param("i", $id);
+                    $getDetails->execute();
+                    $Details = $getDetails->get_result();
+                    $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
+
+
+                    $mail->Subject="Regarding your leave application";
+                    $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Approved by ".$uname.".<br><br> <b>Leave Taken:</b>".$user_detail['LeaveTaken']."<br> <b>Leave Balance:</b>".$user_detail['balanceLeave']." <br><br><br>Thankyou.";
+                 if($mail->send())
+                        {
+                            echo '<script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>';
+                            echo" <script>swal('Mail Sent', '', 'success');</script>";
+                        }
+                }
+                
+                if($state=="rej")
+                {
+                    $six=2;
+                    $mone=-1;
+
+                    $stmt = $connect->prepare( "UPDATE leaveapplication SET notification_status = ?, leaveStatus=?   WHERE application_id = ?");
+                    $stmt->bind_param("iii",$six,$mone,$id);
+                    $stmt->execute();//Updating leave status and notification status
+
+                    $getDetails = $connect->prepare("select * from leaveapplication l , user u where l.user_id= u.user_id And application_id =?");
+                    $getDetails->bind_param("i", $id);
+                    $getDetails->execute();
+                    $Details = $getDetails->get_result();
+                    $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
+
+                    //mail fuction
+                    $mail = new PHPMailer();
+                    $mail->setFrom("nikhi013@gmail.com");
+                    $mail_address=$user_detail['email'];
+                    $mail->addAddress($mail_address);
+                    $mail->isHTML(true);
+
+                    $leave_query= $connect->prepare("select * from leaveapplication where application_id = ? ");
+                    $leave_query->bind_param("i",$id);
+                    $leave_query->execute();
+                    $leave_sub = $leave_query->get_result();
+                    $leave_sub_res = $leave_sub->fetch_assoc();//Get leave Application Details for leave id
+
+                    $mail->Subject="Regarding your leave application";
+                    $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Rejected by ".$uname.".<br><br> Leave Taken:".$user_detail['LeaveTaken']."<br> Leave Balance:".$user_detail['balanceLeave']." \nThankyou.";
+                    if($mail->send())
+                    {
+                        echo "<script>alert('mail sent');</script>";
+                    }
+                }
             }
-        }
-        if($state=="rej")
-        {
-            $six=2;
-            $mone=-1;
-
-            $stmt = $connect->prepare( "UPDATE leaveapplication SET notification_status = ?, leaveStatus=?   WHERE application_id = ?");
-            $stmt->bind_param("iii",$six,$mone,$id);
-            $stmt->execute();//Updating leave status and notification status
-
-            $getDetails = $connect->prepare("select * from leaveapplication l , user u where l.user_id= u.user_id And application_id =?");
-            $getDetails->bind_param("i", $id);
-            $getDetails->execute();
-            $Details = $getDetails->get_result();
-            $user_detail = $Details->fetch_assoc();//getting the details of the user who is applying leave
-
-            //mail fuction
-            $mail = new PHPMailer();
-            $mail->setFrom("nikhi013@gmail.com");
-            $mail_address=$user_detail['email'];
-            $mail->addAddress($mail_address);
-            $mail->isHTML(true);
-
-            $leave_query= $connect->prepare("select * from leaveapplication where application_id = ? ");
-            $leave_query->bind_param("i",$id);
-            $leave_query->execute();
-            $leave_sub = $leave_query->get_result();
-            $leave_sub_res = $leave_sub->fetch_assoc();//Get leave Application Details for leave id
-
-            $mail->Subject="Regarding your leave application";
-            $mail->Body = "Your leave [ID:".$id."] application ".$leave_sub_res['subjectOfLeave']." has been Rejected by ".$uname.".<br><br> Leave Taken:".$user_detail['LeaveTaken']."<br> Leave Balance:".$user_detail['balanceLeave']." \nThankyou.";
-            if($mail->send())
-            {
-                echo "<script>alert('mail sent');</script>";
-            }
-        }
-
 
 
 

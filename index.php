@@ -104,7 +104,7 @@ if($_SESSION['desig']=='faculty'){
                                             <div class="card-header">
                                                 <h5>Recent Leave Requests</h5>
                                             </div>
-                                            <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
+                                            <div class="card-block px-0 py-3">
                                                 <div class="bs-example">
                                                     <ul id="myTab" class="nav nav-tabs">
                                                         <li class="nav-item">
@@ -447,6 +447,8 @@ if($_SESSION['desig']=='faculty'){
                 });
 
             }
+            
+
             $('#fromDate').on('change', function() {
                 if ($("#toDate").val() != "" && $("#toDate").val() != "") {
 
@@ -600,7 +602,7 @@ if($_SESSION['desig']=='faculty'){
                     load_unseen_notification();
                     check_requests();
 
-                }, 2000);
+                }, 200);
 
 
                 $(document).on('click', '.leave-button', function() {
@@ -646,6 +648,37 @@ if($_SESSION['desig']=='faculty'){
 
                     // to prevent refreshing the whole page page
                     return false;
+
+                });
+                $(document).on('click', '.delete-button', function() {
+                    var t = $(this).attr('id');
+                   if(confirm("Are you sure you wish to delete your request?"))
+                   {
+                       $.ajax({
+                            type: 'POST',
+                            url: 'delete_req.php',
+                            data: {
+                                id: t
+                            } // getting filed value in serialize form
+                        })
+                        .done(function(data) { // if getting done then call.
+
+                            // show the response
+                            location.reload();
+
+
+
+                        })
+                        .fail(function() { // if fail then getting message
+
+
+
+                        });
+
+                    // to prevent refreshing the whole page page
+                    return false;
+                   }
+                    
 
                 });
             });

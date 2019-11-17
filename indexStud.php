@@ -300,6 +300,7 @@ if($_SESSION['desig']=='student'){
             <script src="assets/js/pcoded.min.js"></script>
 
             <script src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>
+            
             <script>
                 $(document).ready(function() {
                     $('#fromDate').on('change', function() {
@@ -395,6 +396,37 @@ if($_SESSION['desig']=='student'){
                         load_unseen_notification();
 
                     }, 2000);
+
+                    $(document).on('click', '.delete-button', function() {
+                    var t = $(this).attr('id');
+                   if(confirm("Are you sure you wish to delete your request?"))
+                   {
+                       $.ajax({
+                            type: 'POST',
+                            url: 'delete_req.php',
+                            data: {
+                                id: t
+                            } // getting filed value in serialize form
+                        })
+                        .done(function(data) { // if getting done then call.
+
+                            // show the response
+
+
+
+                        })
+                        .fail(function() { // if fail then getting message
+
+
+
+                        });
+
+                    // to prevent refreshing the whole page page
+                    return false;
+                   }
+                    
+
+                });
 
                 });
             </script>

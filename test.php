@@ -1,5 +1,12 @@
 <?php
-include("connect.php");
+
+
+
+
+
+
+
+/*include("connect.php");
 $pwd = bin2hex(openssl_random_pseudo_bytes(4));
 $Fid="16bt6cs013";
 $hash=password_hash("1212", PASSWORD_BCRYPT);
@@ -10,7 +17,7 @@ $timeTarget = 0.05; // 50 milliseconds
 $cost = 10;
 
 $new=password_hash("ashwin", PASSWORD_BCRYPT, ["cost" => $cost]);
-echo("<br>".$new);
+echo("<br>".$new);*/
 
 /*$a='NULL-5';
 $output='';

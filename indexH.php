@@ -111,7 +111,7 @@ if($_SESSION['desig']=='hod'){
                                             <div class="card-header">
                                                 <h5>Recent Leave Requests</h5>
                                             </div>
-                                            <div class="card-block px-0 py-3" style="overflow:auto;max-height:1000px;">
+                                            <div class="card-block px-0 py-3">
                                                 <div class="table-responsive">
                                                     <table class="table table-hover" id="res1">
                                                         <!--[Ajax call for Recent Users ] -->

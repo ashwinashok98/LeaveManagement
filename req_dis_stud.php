@@ -58,9 +58,11 @@ if(isset($_SESSION['uname']) )
                         $output.='<button class="label theme-bg text-white f-15" disabled >Pending..</button>
                         
                         </form><br></a>
-                        </li>';
+                        </li> <td><button class="label label-danger text-white f-15 delete-button" id='.$row['application_id'].'>Delete</button></a></td>';
                     }
              $output.='</td>
+            
+             
              </tr></tbody>';
         }
 

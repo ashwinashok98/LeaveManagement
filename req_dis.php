@@ -39,11 +39,11 @@ if (isset($_SESSION['uname']))
             <td><img class="rounded-circle" style="width:40px;"
                     src="assets/images/user/avatar-1.jpg"
                     alt="activity-user"><br>'.$name.'</td>
-            <td>
+                    <td>
 
-                <h6 class="mb-1">' . $row["subjectOfLeave"] . '</h6>
-                <p class="m-0" style="max-width:500px;margin: auto;">' . $row["reason"] . '</p>
-            </td>
+                    <h6 class="mb-1">'.$row["subjectOfLeave"].'</h6>
+                    <p class="m-0" style="max-width:400px;margin: auto; word-wrap: break-word;white-space: initial">'.$row["reason"].'</p>
+                </td>
             <td>
                 <h6 class="text-muted"><i
                             class="fas fa-circle text-c-green f-10 m-r-15"></i>' . $new_from . '</h6><h6 class="text-muted"><i
@@ -95,11 +95,11 @@ if (isset($_SESSION['uname']))
                 <td><img class="rounded-circle" style="width:40px;"
                src="assets/images/user/avatar-1.jpg"
                alt="activity-user"></td>
-                 <td>
+               <td>
 
-           <h6 class="mb-1">' . $row["subjectOfLeave"] . '</h6>
-           <p class="m-0" style="max-width:400px;margin: auto; word-wrap: break-word;white-space: initial" >' . $row["reason"] . '</p>
-            </td>
+               <h6 class="mb-1">'.$row["subjectOfLeave"].'</h6>
+               <p class="m-0" style="max-width:400px;margin: auto; word-wrap: break-word;white-space: initial">'.$row["reason"].'</p>
+           </td>
              <td>
            <h6 class="text-muted"><i
                        class="fas fa-circle text-c-green f-10 m-r-15"></i>' . $new_from . '</h6><h6 class="text-muted"><i
@@ -120,7 +120,7 @@ if (isset($_SESSION['uname']))
                     $output1 .= '<button class="label label-warning theme-bg3 text-white f-15" disabled >Pending..</button>
                    
                    </form><br></a>
-                   </li>';
+                   </li><td><button class="label label-danger text-white f-15 delete-button" id='.$row['application_id'].'>Delete</button></a></td>';
                 }
                 $output1 .= '</td>
         </tr></tbody>';
@@ -163,7 +163,7 @@ if (isset($_SESSION['uname']))
             <td>
 
                 <h6 class="mb-1">' . $row["subjectOfLeave"] . '</h6>
-                <p class="m-0" style="max-width:500px;margin: auto;">' . $row["reason"] . '</p>
+                <p class="m-0" style="max-width:400px;margin: auto; word-wrap: break-word;white-space: initial">' . $row["reason"] . '</p>
             </td>
             <td>
                 <h6 class="text-muted"><i
