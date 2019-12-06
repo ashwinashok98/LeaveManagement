@@ -113,20 +113,30 @@ if($_SESSION['desig']=='faculty'){
                                                         <li class="nav-item">
                                                             <a href="#t_req" class="nav-link" data-toggle="tab">Your Requests</a>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a href="#t_sub" class="nav-link" data-toggle="tab">Substitutions</a>
+                                                        </li>
 
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade show active" id="s_req">
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover" id="res1">
-                                                                    <!--[Ajax call for Recent Users ] -->
+                                                                    <!--[Ajax call for Student request ] -->
                                                                 </table>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="t_req">
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover" id="res2">
-                                                                    <!--[Ajax call for Recent Users ] -->
+                                                                    <!--[Ajax call for teachers request ] -->
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="t_sub">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover" id="res3">
+                                                                    <!--[Ajax call for Substitution ] -->
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -566,6 +576,7 @@ if($_SESSION['desig']=='faculty'){
                         success: function(data) {
                             $('#res1').html(data.output);
                             $('#res2').html(data.output1);
+                            $('#res3').html(data.output2);
 
 
                         }

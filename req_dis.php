@@ -13,6 +13,8 @@ if (isset($_SESSION['uname']))
     $output .= '<tbody>';
     $output1 = '';
     $output1 .= '<tbody>';
+    $output2 = '';
+    $output2 .= '<tbody>';
     if ($_SESSION['desig'] != 'hod') {
         $query = "SELECT * FROM leaveapplication where facultyApproval = '" . $uname . "' ORDER BY application_id DESC";//student leave req
         $result = mysqli_query($connect, $query);
@@ -208,14 +210,122 @@ if (isset($_SESSION['uname']))
         }
                 
     }
+    //<!--------------------------------Substitution----------------------------------------!>
 
+      
+        $query = "SELECT * FROM `managefaculty` , leaveapplication where managefaculty.application_id=leaveapplication.application_id and leaveapplication.leaveStatus=1 ORDER BY leaveapplication.application_id DESC";
+        $result = mysqli_query($connect, $query);
+        $output2.='<tr class="unread"><th>Date</th><th class>08.45 to 09.35</th>
+        <th class>09.35 to 10.25</th>
+        <th class>10.40 to 11.30</th>
+        <th class>11.30 to 12.20</th>
+        <th class>12.20 to 1.10</th>
+        <th class>01.50 to 02.40</th>
+        <th class>02.40 to 03.30</th></tr>';
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
 
+                $output2.='<tr>';
+                if (strpos($row['period1'], $uname) !== false || strpos($row['period2'], $uname) !== false || strpos($row['period3'], $uname) !== false || strpos($row['period4'], $uname) !== false || strpos($row['period5'], $uname) !== false || strpos($row['period6'], $uname) !== false || strpos($row['period7'], $uname) !== false)
+                {
+                    $ori=$row['date'];
+                    $t= strtotime($ori);
+                    $newdate = date("d-m-Y", $t);
+                    $output2.='<td>'.$newdate.'</td>';
+                    if (strpos($row['period1'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period1'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }   
+
+//<!--------------------------------Substitution----------------------------------------!>
+                    if (strpos($row['period2'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period2'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+              //<!--------------------------------Substitution----------------------------------------!>      
+                    
+                    if (strpos($row['period3'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period3'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+
+//<!--------------------------------Substitution----------------------------------------!>
+                    if (strpos($row['period4'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period4'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+
+//<!--------------------------------Substitution----------------------------------------!>
+                    if (strpos($row['period5'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period5'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+
+//<!--------------------------------Substitution----------------------------------------!>
+                    if (strpos($row['period6'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period6'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+
+//<!--------------------------------Substitution----------------------------------------!>
+                    if (strpos($row['period7'], $uname) !== false)   
+                    {
+                        $output2.='<td>'.$row['period7'].'</td>';
+                    }
+                    else
+                    {
+                         $output2.='<td>---</td>';
+                    }  
+                }
+                
+                $output2.='</tr>';
+            }
+        }
+        else{
+            $output2 .= '<tr class="unread">
+        
+        <td>
+
+            <h6 class="mb-1">No Requests </h6>
+            
+        </td>
+    
+        </tr></tbody>';
+        }
+        
+
+               
     
 
 
     $data = array(
         'output' => $output,
         'output1' => $output1,
+        'output2' => $output2,
 
     );
     echo json_encode($data);
